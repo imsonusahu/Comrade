@@ -1,10 +1,15 @@
 package com.comrade.comrade.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -20,12 +25,15 @@ public class SplashActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         requestWindowFeature(1);
+
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         binding.logoName.setAnimation(AnimationUtils.loadAnimation(SplashActivity.this, R.anim.fade_in));
 
@@ -57,5 +65,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
+
 
 }

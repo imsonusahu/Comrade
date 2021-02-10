@@ -1,38 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".fragments.menuTabs.UsersProfilesListFragment">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchViewProf"
+            style="@style/Widget.AppCompat.SearchView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@drawable/btn_strock_gray"
             android:layout_margin="10dp"
+            android:background="@drawable/btn_strock_gray"
+            android:visibility="gone"
             app:iconifiedByDefault="false"
-            style="@style/Widget.AppCompat.SearchView"
-            app:queryHint="Search profiles"
+            app:queryHint="Search visitors"
             app:searchIcon="@drawable/ic_baseline_search_24">
 
         </androidx.appcompat.widget.SearchView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_userProfList"
+        <io.supercharge.shimmerlayout.ShimmerLayout
+            android:id="@+id/simmerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/searchViewProf"
-            tools:listitem="@layout/user_list_search_ui">
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:shimmer_animation_duration="800">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <!-- Adding 3 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+            </LinearLayout>
+
+        </io.supercharge.shimmerlayout.ShimmerLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUserProfList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            tools:listitem="@layout/visitors_list_ui" />
 
     </RelativeLayout>
 </layout>

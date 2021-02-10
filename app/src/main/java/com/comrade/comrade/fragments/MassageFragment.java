@@ -45,12 +45,12 @@ public class MassageFragment extends Fragment {
 
         if (viewPager != null) {
 
-            ActivitiesFragment activitiesFragment = new ActivitiesFragment();
+            UserChatListFrag userChatListFrag = new UserChatListFrag();
            // MatchesFragment matchesFragment = new MatchesFragment();
 
 
             pagerAdapter = new TabAdapter(getChildFragmentManager());
-            pagerAdapter.addFragment(activitiesFragment, "Messages");
+            pagerAdapter.addFragment(userChatListFrag, "Messages");
             //pagerAdapter.addFragment(matchesFragment, "Feed");
 
 

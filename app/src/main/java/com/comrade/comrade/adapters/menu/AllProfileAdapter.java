@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.comrade.comrade.R;
 import com.comrade.comrade.models.AllProfileModel;
+import com.squareup.picasso.Picasso;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
@@ -78,19 +79,12 @@ public class AllProfileAdapter extends RecyclerView.Adapter<AllProfileAdapter.VH
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
 
-
                 if (buttonState) {
                     // Button is active
-
-
                     button.setImageResource(R.drawable.like_icon);
 
                     holder.sendHeart.setText("Sent");
                     holder.sendHeart.setTextColor(Color.RED);
-
-
-                    Log.e("datax",holder.sendHeart.getText()+"");
-
 
 
                 } else {
@@ -99,9 +93,9 @@ public class AllProfileAdapter extends RecyclerView.Adapter<AllProfileAdapter.VH
                     button.setImageResource(R.drawable.unlike_icon);
                     holder.sendHeart.setText("Request match");
                     holder.sendHeart.setTextColor(Color.BLACK);
-                    Log.e("datax",holder.sendHeart.getText()+"");
 
                 }
+                Log.e("datax",holder.sendHeart.getText()+"");
 
 
             }
@@ -120,9 +114,11 @@ public class AllProfileAdapter extends RecyclerView.Adapter<AllProfileAdapter.VH
 
         try {
 
-            Glide.with(context)
+
+            Picasso.get()
                     .load(profileModel.getProfilePic())
-                    .centerCrop()
+                    .placeholder(R.drawable.user)
+                    .error(R.drawable.user)
                     .into(holder.imageView);
 
         } catch (Exception e) {

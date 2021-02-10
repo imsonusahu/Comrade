@@ -11,25 +11,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.comrade.comrade.R;
 import com.comrade.comrade.adapters.UserChatListAdapter;
-import com.comrade.comrade.databinding.FragmentActivitiesBinding;
+import com.comrade.comrade.databinding.FragmentUserChatListBinding;
 import com.comrade.comrade.models.UsersListChatModel;
 
 import java.util.ArrayList;
 
 
-public class ActivitiesFragment extends Fragment {
+public class UserChatListFrag extends Fragment {
 
 
     private ArrayList<UsersListChatModel> arrayList = new ArrayList<>();
 
 
-    FragmentActivitiesBinding binding;
+    FragmentUserChatListBinding binding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_activities, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_chat_list, container, false);
 
 
         arrayList.add(new UsersListChatModel("2",

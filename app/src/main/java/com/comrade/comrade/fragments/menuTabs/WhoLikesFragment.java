@@ -64,38 +64,46 @@ public class WhoLikesFragment extends Fragment {
         initView();
         binding.pbWhoLike.setVisibility(View.GONE);
 
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        Runnable myRunnable = new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 getUserList();
-            } // This is your code
-        };
-        mainHandler.post(myRunnable);
+            }
+        },300);
+
+
+
+
 
         return binding.getRoot();
     }
+
     @Override
     public void onStart() {
         super.onStart();
         Log.e("search", "onStart() who");
     }
+
     @Override
     public void onResume() {
         super.onResume();
         Log.e("search", "onResume() who");
     }
+
     @Override
     public void onPause() {
         super.onPause();
         Log.e("search", "onPause() who");
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
 
         Log.e("search", "onDestroyView() who");
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -121,6 +129,7 @@ public class WhoLikesFragment extends Fragment {
                 Log.e("search", "is working Who");
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
 

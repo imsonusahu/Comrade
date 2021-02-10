@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-<RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.menuTabs.ProfileVisitorsListFragment">
-
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchVisitors"
@@ -17,20 +16,58 @@
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:background="@drawable/btn_strock_gray"
+            android:visibility="gone"
             app:iconifiedByDefault="false"
             app:queryHint="Search visitors"
             app:searchIcon="@drawable/ic_baseline_search_24">
 
         </androidx.appcompat.widget.SearchView>
 
+        <io.supercharge.shimmerlayout.ShimmerLayout
+            android:id="@+id/simmerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/searchVisitors"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:shimmer_animation_duration="800">
+
+            <!-- Adding 3 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+                <include layout="@layout/simmer_view" />
+
+            </LinearLayout>
+
+        </io.supercharge.shimmerlayout.ShimmerLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/visitors_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/searchVisitors"
-            tools:listitem="@layout/visitors_list_ui">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            tools:listitem="@layout/visitors_list_ui" />
 
     </RelativeLayout>
 </layout>

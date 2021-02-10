@@ -76,9 +76,11 @@ dependencies {
 
     //Glide
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     //bumped from 4.8.0 to 4.9.0
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
 
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 

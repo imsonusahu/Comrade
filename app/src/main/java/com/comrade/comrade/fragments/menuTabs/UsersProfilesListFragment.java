@@ -1,6 +1,7 @@
 package com.comrade.comrade.fragments.menuTabs;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +50,7 @@ public class UsersProfilesListFragment extends Fragment {
     private int havePosition;
     private QueryPreferences queryPreferences;
 
-    private Map<String,String> users;
+    private Map<String, String> users;
 
 
     @Override
@@ -58,12 +59,16 @@ public class UsersProfilesListFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_users_profiles_list, container, false);
 
-        queryPreferences=new QueryPreferences(getActivity());
-        users=queryPreferences.getUserDetail();
+        queryPreferences = new QueryPreferences(getActivity());
+        users = queryPreferences.getUserDetail();
 
-
+        binding.simmerView.startShimmerAnimation();
 
         initView();
+
+
+        getUserList();
+
 
         onClick();
 
@@ -78,7 +83,7 @@ public class UsersProfilesListFragment extends Fragment {
             public void onClick(View view, int position) {
 
                 havePosition = position;
-                Log.e("search", "Have position : "+havePosition+"");
+                Log.e("search", "Have position : " + havePosition + "");
 
             }
 
@@ -101,7 +106,7 @@ public class UsersProfilesListFragment extends Fragment {
         binding.rvUserProfList.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         searchViewOne();
-        getUserList();
+
 
     }
 
@@ -165,7 +170,6 @@ public class UsersProfilesListFragment extends Fragment {
     }
 
 
-
     private void getUserList() {
 
 
@@ -179,8 +183,8 @@ public class UsersProfilesListFragment extends Fragment {
             jsonObject.put("lat", users.get(queryPreferences.latitude));
             jsonObject.put("lng", users.get(queryPreferences.longitude));
 
-            Log.e("Latlong","Lat :  " +users.get(queryPreferences.latitude)+" " +
-                    "   "+"long : " +users.get(queryPreferences.longitude));
+            Log.e("Latlong", "Lat :  " + users.get(queryPreferences.latitude) + " " +
+                    "   " + "long : " + users.get(queryPreferences.longitude));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -194,7 +198,7 @@ public class UsersProfilesListFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.GET_ALL_PROFILES, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                 Log.e("LOG_VOLLEY", "Users response" + response);
+                Log.e("LOG_VOLLEY", "Users response" + response);
 
 
                 try {
@@ -260,6 +264,9 @@ public class UsersProfilesListFragment extends Fragment {
 
         adapter = new AllProfileAdapter(getActivity(), arrayList);
         binding.rvUserProfList.setAdapter(adapter);
+        binding.rvUserProfList.setVisibility(View.VISIBLE);
+        binding.simmerView.setVisibility(View.GONE);
+        binding.simmerView.stopShimmerAnimation();
         adapter.notifyDataSetChanged();
 
     }
