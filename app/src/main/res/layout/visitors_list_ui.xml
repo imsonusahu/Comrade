@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/searProfCard"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            android:elevation="0dp"
+            android:orientation="horizontal"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/userImgSearchList"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/persion"></ImageView>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/usernameSearchList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_toEndOf="@id/searProfCard"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:paddingHorizontal="20sp"
+            android:text="Username"
+            android:textColor="@color/black"
+            android:textSize="16sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/genderProfileSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernameSearchList"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/searProfCard"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingHorizontal="21sp"
+            android:text="Male"
+            android:textColor="@color/black"
+            android:textSize="12sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/locationDist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernameSearchList"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/genderProfileSearch"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="6 Km, Indore"
+            android:textColor="@color/green"
+            android:textSize="12sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <com.varunest.sparkbutton.SparkButton
+                android:id="@+id/like_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                app:sparkbutton_activeImage="@drawable/like_icon"
+                app:sparkbutton_animationSpeed="1.5"
+                app:sparkbutton_iconSize="30dp"
+                app:sparkbutton_inActiveImage="@drawable/unlike_icon" />
+
+
+            <TextView
+                android:id="@+id/sendHeartBtn"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/proxima_nova_regular"
+                android:gravity="center"
+                android:text="Request match"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:visibility="gone"
+
+                >
+
+            </TextView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

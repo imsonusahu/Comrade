@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragments.query.RelStatusFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:padding="20dp"
+            android:text="What's your relationship status?"
+            android:textColor="@color/black"
+            android:textSize="24sp">
+
+        </TextView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relStatusRadioGroup"
+                    android:orientation="vertical">
+
+
+                    <RadioButton
+                        android:id="@+id/single"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:padding="15dp"
+                        android:text="Single"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/taken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Taken"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/in_a_relationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="In a relationship"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/open"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Open"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/bisexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="I'd rather not say"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

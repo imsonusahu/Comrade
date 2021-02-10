@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGrayBack"
+        android:orientation="vertical"
+        tools:context=".fragments.MoreInfoFragment">
+
+
+        <RelativeLayout
+            android:id="@+id/tb_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="top"
+            android:background="#FFFFFF"
+            android:elevation="5dp"
+            android:gravity="top">
+
+
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center"
+                android:text="More"
+                android:textAlignment="center"
+                android:textColor="@color/pink_700"
+                android:textSize="18sp"
+                android:textStyle="normal">
+
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_back_"
+                android:visibility="visible">
+            </ImageView>
+
+        </RelativeLayout>
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <RelativeLayout
+                            android:id="@+id/height"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Height"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="154 cm"
+                                android:textColor="#636262"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+
+                        <RelativeLayout
+                            android:id="@+id/cildren"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Children"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+
+                                android:text="Someday"
+                                android:textColor="#636262"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+
+                        <RelativeLayout
+                            android:id="@+id/drinking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Drinking"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Sometimes"
+                                android:textColor="#636262"
+
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:id="@+id/languageSpeak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Language i speak"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Hindi, English"
+                                android:textColor="#636262"
+
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+
+                        <RelativeLayout
+                            android:id="@+id/relationStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Relationship"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+
+                                android:text="Single"
+                                android:textColor="#636262"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:id="@+id/sexuality"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Sexuality"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Straight"
+
+                                android:textColor="#636262"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+
+                        <RelativeLayout
+                            android:id="@+id/smoking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Smoking"
+                                android:textColor="@color/black"
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="55dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="14dp"
+                                android:text="Sometimes"
+                                android:textColor="#636262"
+
+                                android:textSize="16sp">
+
+                            </TextView>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:background="#C5C3C3">
+
+                        </View>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:elevation="0dp"
+                    android:padding="5dp"
+                    app:cardElevation="0dp"
+
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:padding="10dp"
+                            android:text="My honest opinions"
+                            android:textColor="@color/black"
+                            android:textSize="18sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:padding="10dp"
+                            android:text="Pick three question to add to your profile"
+                            android:textColor="@color/textColorHint"
+                            android:textSize="14sp">
+
+                        </TextView>
+
+                        <Button
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:id="@+id/myOpinions"
+                            android:layout_marginHorizontal="10dp"
+                            android:background="@drawable/btn_back_purple"
+                            android:backgroundTint="@color/pink_700"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Add to my opinions"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="18sp">
+
+                        </Button>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:elevation="0dp"
+                    android:padding="5dp"
+                    app:cardElevation="0dp"
+
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:padding="10dp"
+                            android:text="My interests"
+                            android:textColor="@color/black"
+                            android:textSize="18sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:padding="10dp"
+                            android:text="Add interest to find people who like the same things"
+                            android:textColor="@color/textColorHint"
+                            android:textSize="14sp">
+
+                        </TextView>
+
+                        <Button
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:background="@drawable/btn_back_purple"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:backgroundTint="@color/pink_700"
+
+                            android:text="Add interest"
+                            android:textAllCaps="false"
+                            android:id="@+id/interest"
+                            android:textColor="@color/white"
+                            android:textSize="18sp">
+
+                        </Button>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:padding="10dp"
+                            android:text="Verify my profile"
+                            android:textColor="@color/black"
+                            android:textSize="18sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:padding="10dp"
+                            android:text="Please verify your profile to talk people to know real match or not."
+                            android:textColor="@color/textColorHint"
+                            android:textSize="14sp">
+
+                        </TextView>
+
+                        <Button
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:background="@drawable/btn_back_purple"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Verify"
+                            android:backgroundTint="@color/pink_700"
+
+                            android:id="@+id/verify"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="18sp">
+
+                        </Button>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:elevation="0dp"
+                    android:padding="5dp"
+                    app:cardElevation="0dp"
+
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:padding="10dp"
+                            android:text="Mobile number"
+                            android:textColor="@color/black"
+                            android:textSize="18sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:padding="10dp"
+                            android:text="Add your number to verify that you're you"
+                            android:textColor="@color/textColorHint"
+                            android:textSize="14sp">
+
+                        </TextView>
+
+                        <Button
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:background="@drawable/btn_back_purple"
+                            android:drawableStart="@drawable/ic_baseline_call_24"
+                            android:drawableTint="@color/white"
+                            android:drawablePadding="-100dp"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:gravity="center"
+                            android:paddingStart="120dp"
+                            android:id="@+id/addNumber"
+                            android:backgroundTint="@color/pink_700"
+                            android:text="Add number"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            tools:ignore="RtlSymmetry">
+
+                        </Button>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+</layout>

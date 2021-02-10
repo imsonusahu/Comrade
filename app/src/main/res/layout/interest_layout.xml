@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="5dp"
+    >
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/edit_text_back"
+        android:backgroundTint="#DB46F4"
+        android:gravity="center"
+        android:paddingVertical="2dp"
+
+        android:paddingHorizontal="20dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/genderIc"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/gender"
+            android:layout_marginEnd="5dp"
+            >
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/interestAboutText"
+            android:layout_gravity="start"
+            android:fontFamily="@font/proxima_nova_regular"
+            android:gravity="start"
+
+            android:paddingVertical="5dp"
+            android:textAlignment="viewStart"
+            android:text="Straight"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

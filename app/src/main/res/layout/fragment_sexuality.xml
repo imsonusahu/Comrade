@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragments.query.SexualityFragment">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:padding="20dp"
+            android:text="How would you describe your sexual orientation?"
+            android:textColor="@color/black"
+            android:textSize="22sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+
+                <RadioGroup
+                    android:id="@+id/sexualityRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <RadioButton
+                        android:id="@+id/straight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Straight"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/gay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Gay"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/lesbian"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Lesbian"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/bisexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Bisexual"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/asexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Asexual"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/demisexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Demisexual"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"></RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/pansexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Pansexual"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"></RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/queer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Queer"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/questioning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="Questioning"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"></RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/notSay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/mabry_regular_pro"
+                        android:padding="15dp"
+                        android:text="I'd rather not say"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"></RadioButton>
+
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

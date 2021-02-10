@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.FinishActivity">
+
+
+        <TextView
+            android:id="@+id/ttx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:padding="20dp"
+            android:text="You have done."
+            android:layout_marginTop="80dp"
+            android:textAlignment="center"
+
+            android:textColor="@color/black"
+            android:textSize="24sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ttx"
+            android:layout_marginTop="-20dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:padding="20dp"
+            android:text="Great you have completed your profile. now you can start to connect ral people, so let's get started"
+            android:textAlignment="center">
+
+        </TextView>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="100dp"
+            app:lottie_autoPlay="true"
+            android:id="@+id/myAnimation"
+            app:lottie_loop="true"
+            android:visibility="visible"
+            app:lottie_rawRes="@raw/done" />
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="50dp"
+                android:visibility="gone"
+                android:clickable="true"
+                android:id="@+id/getCard"
+
+                android:layout_alignParentBottom="true"
+                app:cardBackgroundColor="@color/pink_700"
+                app:cardCornerRadius="50dp"
+
+
+                android:focusable="true">
+
+                <Button
+                    android:id="@+id/myBtnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="Get started"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/mabry_bold_pro"
+                    android:textAllCaps="false"
+                    >
+
+                </Button>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+
+
+
+
+</layout>

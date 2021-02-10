@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".activity.BaseProfileActivity">
+
+        <LinearLayout
+            android:id="@+id/myLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:padding="15dp">
+
+            <ImageButton
+                android:id="@+id/closeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_round_close_24"
+                android:tint="#000000"
+
+                tools:ignore="ContentDescription">
+
+            </ImageButton>
+
+
+            <TextView
+                android:id="@+id/titleBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:paddingEnd="20dp"
+                android:textColor="@color/black"
+                android:text="Name &amp; Age"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="RtlSymmetry">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_layout"
+            android:layout_below="@+id/myLayout">
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/pink_700"
+                app:cardCornerRadius="50dp"
+
+                >
+
+                <Button
+                    android:id="@+id/myBtnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="Continue"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/mabry_regular_pro"
+                    android:textAllCaps="false"
+                    >
+
+                </Button>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

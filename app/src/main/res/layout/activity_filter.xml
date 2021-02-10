@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.FilterActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/tb_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:elevation="2dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
+                android:padding="2dp"
+                android:src="@drawable/ic_arrow_back_">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:text="Filter"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/editProfBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/edit_profile_ic"
+                android:visibility="gone"
+                app:tint="@android:color/darker_gray">
+
+            </ImageView>
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="20dp"
+            android:text="Preferences"
+            android:textColor="@color/pink_700"
+            android:textSize="24sp">
+        </TextView>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:padding="10dp"
+                android:text="Gender"
+                android:textColor="@color/black"
+                android:textSize="18sp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:padding="10dp"
+                android:text="Male"
+                android:textSize="18sp">
+            </TextView>
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:padding="10dp"
+                    android:text="Age"
+                    android:textColor="@color/black"
+                    android:textSize="18sp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:padding="10dp"
+                    android:text="00"
+                    android:textSize="18sp">
+                </TextView>
+
+
+            </RelativeLayout>
+
+            <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
+                android:id="@+id/ageSeekBar"
+                style="@style/Base.Sephiroth.Widget.RangeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="200"
+                android:soundEffectsEnabled="true"
+                android:progressBackgroundTint="@color/black"
+
+                android:thumb="@drawable/seek_bar_thumb"
+                app:range_progress_endValue="60"
+                app:range_progress_startEnd_minDiff="1"
+                app:range_progress_startValue="18" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:padding="10dp"
+                    android:text="Height"
+                    android:textColor="@color/black"
+                    android:textSize="18sp">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/heightMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_toStartOf="@id/toggle"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="168 cm"
+
+                    >
+
+                </TextView>
+
+
+                <RadioGroup
+                    android:id="@+id/toggle"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/pink_out_line"
+                    android:checkedButton="@+id/offer"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+
+
+                        android:id="@+id/ftRadio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_back"
+                        android:button="@null"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+
+                        android:text="ft" />
+
+                    <RadioButton
+                        android:id="@+id/cmRadio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_back"
+                        android:button="@null"
+                        android:checked="true"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="cm"
+                        android:textColor="@color/white" />
+                </RadioGroup>
+
+
+            </RelativeLayout>
+
+
+            <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
+                android:id="@+id/heightSeekBar"
+                style="@style/Base.Sephiroth.Widget.RangeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="200"
+                android:soundEffectsEnabled="true"
+                android:thumb="@drawable/seek_bar_thumb"
+                app:range_progress_endValue="160"
+                android:progressBackgroundTint="@color/black"
+                android:forceHasOverlappingRendering="true"
+                app:range_progress_startEnd_minDiff="1"
+                app:range_progress_startValue="130" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:padding="10dp"
+                    android:text="Distance"
+                    android:textColor="@color/black"
+                    android:textSize="18sp">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/destMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_toStartOf="@id/toggleDistance"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="100 miles"
+
+                    >
+
+                </TextView>
+
+
+                <RadioGroup
+                    android:id="@+id/toggleDistance"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/pink_out_line"
+                    android:checkedButton="@+id/offer"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+
+
+                        android:id="@+id/miRadio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_back"
+                        android:button="@null"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+
+                        android:text="mi" />
+
+                    <RadioButton
+                        android:id="@+id/kmRadio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/toggle_back"
+                        android:button="@null"
+                        android:checked="true"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="km"
+
+                        android:textColor="@color/white" />
+                </RadioGroup>
+
+
+            </RelativeLayout>
+
+            <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
+                android:id="@+id/distanceSeekBar"
+                style="@style/Base.Sephiroth.Widget.RangeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="200"
+                android:soundEffectsEnabled="true"
+                android:thumb="@drawable/seek_bar_thumb"
+                android:progressBackgroundTint="@color/black"
+
+                app:range_progress_endValue="50"
+                app:range_progress_startEnd_minDiff="1"
+                app:range_progress_startValue="1" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

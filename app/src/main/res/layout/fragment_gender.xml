@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/solid_white_back"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".fragments.query.GenderFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:padding="5dp"
+            android:text="Please select gender"
+            android:textAlignment="center"
+            android:textColor="@color/pink_700"
+            android:textSize="22sp">
+
+        </TextView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/genderExp"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            tools:ignore="RtlSymmetry">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="30dp"
+                    android:alpha="0.6"
+                    android:background="@drawable/girl"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="@font/semibold"
+                    android:shadowRadius="20"
+                    android:textAlignment="center">
+
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="30dp"
+                    android:alpha="0.6"
+                    android:background="@drawable/boy"
+                    android:button="@android:color/transparent"
+                    android:fontFamily="@font/semibold"
+                    android:shadowRadius="20"
+                    android:textAlignment="center">
+
+                </RadioButton>
+
+            </RadioGroup>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/femaleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="55dp"
+                    android:fontFamily="@font/mabry_regular_pro"
+                    android:padding="20dp"
+                    android:text="Female"
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/maleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/femaleText"
+                    android:fontFamily="@font/mabry_regular_pro"
+                    android:padding="20dp"
+                    android:text="Male"
+                    android:textAlignment="center"
+                    android:textSize="18sp"></TextView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

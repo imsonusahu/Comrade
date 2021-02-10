@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+
+    app:cardCornerRadius="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/transparent"
+        >
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/deleteBtn"
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textColor="@color/pink_700"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserrat_medium"
+            >
+
+        </Button>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/gray"
+            android:layout_marginHorizontal="10dp"
+            >
+
+        </View>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/replaceBtn"
+            android:text="Replace"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserrat_medium"
+            >
+
+        </Button>
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

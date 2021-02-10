@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+
+
+        tools:context=".activity.LoginActivity">
+
+
+        <LinearLayout
+            android:id="@+id/tool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <ImageButton
+                android:id="@+id/closeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_round_close_24"
+                android:tint="@color/black">
+
+            </ImageButton>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tool"
+            android:fontFamily="@font/stringless"
+            android:text="Comrade"
+            android:textAlignment="center"
+            android:textColor="#2B2A2A"
+            android:textSize="52sp">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_above="@+id/scroll"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+
+            android:orientation="vertical"
+
+            >
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager_introduction"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/viewPagerCountDots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/ll_footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                tools:targetApi="lollipop">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:fillViewport="true"
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="2dp"
+                        android:background="@drawable/btn_strock_gray"
+                        android:drawableStart="@drawable/ic_baseline_call_24"
+                        android:drawablePadding="10dp"
+                        android:focusedByDefault="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:hint="@string/enter_phone_number"
+                        android:importantForAutofill="yes"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:minEms="10"
+                        android:paddingHorizontal="10dp"
+                        android:paddingStart="15dp"
+                        android:textSize="20sp"
+                        tools:ignore="RtlSymmetry">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+
+                    <TextView
+                        android:id="@+id/errorMsgLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/phoneNumber"
+                        android:layout_marginVertical="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:paddingHorizontal="15dp"
+                        android:text="It will show error"
+
+                        android:textColor="@color/pink_700"
+                        android:visibility="invisible">
+
+                    </TextView>
+
+                    <com.royrodriguez.transitionbutton.TransitionButton
+                        android:id="@+id/btnSignIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/errorMsgLogin"
+                        android:layout_gravity="bottom"
+
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Send otp"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        app:defaultColor="@color/pink"
+                        app:loaderColor="@color/pink" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

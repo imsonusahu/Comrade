@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <RelativeLayout
+        android:id="@+id/coverLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".fragments.CompleteOrSkipFragment"
+        android:padding="20dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:padding="10dp"
+                android:text="@string/press_continue_button_for_complete_your_profile"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/msg"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/sub_line"
+                android:textAlignment="center"
+                android:textSize="12sp">
+
+            </TextView>
+
+
+            <Button
+                android:id="@+id/BtnNext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:text="Continue"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone">
+
+            </Button>
+
+
+            <TextView
+                android:id="@+id/maybeLater"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginVertical="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:padding="10dp"
+                android:text="Maybe later"
+                android:textAlignment="center"
+                android:textColor="#4C4C4C"
+                android:textSize="16sp">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.menuTabs.WhoLikesFragment">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewWho"
+            style="@style/Widget.AppCompat.SearchView"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_strock_gray"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search 'who likes you'"
+            app:searchIcon="@drawable/ic_baseline_search_24">
+
+        </androidx.appcompat.widget.SearchView>
+
+
+        <RelativeLayout
+            android:id="@+id/matchCountLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/searchViewWho"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:id="@+id/heartIconMatch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/heart">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total match"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@id/heartIconMatch"
+                >
+
+            </TextView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/mabry_regular_pro"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/totalMatchCount"
+                android:textColor="@color/black"
+                >
+
+            </TextView>
+
+        </RelativeLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/matchRv"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/matchCountLayout"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/who_liked_ui">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ProgressBar
+            android:id="@+id/pbWhoLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+        </ProgressBar>
+
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/solid_white_back"
+        android:orientation="vertical"
+        tools:context=".fragments.LookingForFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="I'm looking for"
+                android:textColor="@color/pink_700"
+                android:textSize="24sp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Please specify gender where \nyou are interested."
+                android:textSize="14sp">
+            </TextView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:orientation="vertical">
+
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioGroupLookingFor"
+                    android:orientation="vertical">
+
+
+                    <RadioButton
+                        android:id="@+id/lookingForFemale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:padding="15dp"
+                        android:text="Looking for female"
+                        android:textColor="#676666"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/lookingForMale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:padding="15dp"
+                        android:text="Looking for male"
+                        android:textColor="#676666"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/lookingForBisexualMale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:padding="15dp"
+                        android:text="Bisexual male"
+                        android:textColor="#676666"
+                        android:textSize="18sp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/lookingForBisexualFemale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/pink_700"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:padding="15dp"
+                        android:text="Bisexual female"
+                        android:textColor="#676666"
+                        android:textSize="18sp">
+
+                    </RadioButton>
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="If you are interested in other please specify."
+                android:textSize="18sp">
+
+            </TextView>
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/proxima_bold"
+                android:hint="(Other)"
+                android:paddingStart="2dp"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry">
+
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/pink_700">
+
+            </View>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

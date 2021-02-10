@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragments.menuTabs.UsersProfilesListFragment">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewProf"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/btn_strock_gray"
+            android:layout_margin="10dp"
+            app:iconifiedByDefault="false"
+            style="@style/Widget.AppCompat.SearchView"
+            app:queryHint="Search profiles"
+            app:searchIcon="@drawable/ic_baseline_search_24">
+
+        </androidx.appcompat.widget.SearchView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_userProfList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/searchViewProf"
+            tools:listitem="@layout/user_list_search_ui">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </RelativeLayout>
+</layout>

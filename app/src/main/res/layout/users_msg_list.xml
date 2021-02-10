@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_margin="8dp"
+    android:elevation="0dp"
+    android:orientation="horizontal"
+    app:cardElevation="0dp">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/userProfileChatList"
+            android:src="@drawable/persion"
+            >
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monu Kushwaha"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:id="@+id/userNameChatList"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/userProfileChatList"
+            android:paddingHorizontal="20dp"
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hey!"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="16sp"
+            android:textColor="#2C2C2C"
+            android:id="@+id/lastMsg"
+            android:layout_below="@+id/userNameChatList"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/userProfileChatList"
+            android:paddingHorizontal="20dp"
+            >
+        </TextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/active_status"
+            android:layout_marginLeft="-20dp"
+            android:id="@+id/activeStatus2"
+            android:layout_toRightOf="@id/userProfileChatList"
+            >
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7:00PM"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="14dp"
+            android:textColor="@color/green"
+            android:id="@+id/msgTime"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/userNameChatList"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="20dp"
+            >
+        </TextView>
+
+    </RelativeLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

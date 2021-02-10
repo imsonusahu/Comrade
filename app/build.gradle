@@ -1,0 +1,111 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '29.0.3'
+
+    defaultConfig {
+        applicationId "com.comrade.comrade"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    android {
+        aaptOptions.cruncherEnabled = false
+        aaptOptions.useNewCruncher = false
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //google Map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    implementation 'com.google.android.gms:play-services:12.0.1'
+
+    //firebase Sign up
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
+    implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
+
+    //extra
+    implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation "com.airbnb.android:lottie:3.6.0"
+    implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    implementation 'it.sephiroth.android.library.rangeseekbar:rangeseekbar:1.1.0'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+    implementation 'com.moos:Material-BottomBarLayout:1.0.5'
+
+    implementation("io.coil-kt:coil:1.1.1")
+    implementation 'com.github.varunest:sparkbutton:1.0.6'
+    implementation 'com.royrodriguez:transitionbutton:0.2.0'
+
+    //Glide
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //bumped from 4.8.0 to 4.9.0
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
+
+    //webService
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'net.gotev:uploadservice:2.1'
+
+    //
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //otpAutoRead
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
+
+    implementation 'com.razorpay:checkout:1.5.16'
+
+
+    //weSocket HTTP
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+    //Socket.IO
+    implementation 'com.github.nkzawa:socket.io-client:0.3.0'
+
+
+}
+
+apply plugin: 'com.google.gms.google-services'

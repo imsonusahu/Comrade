@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".fragments.CardSwipeFragment">
+
+        <RelativeLayout
+            android:id="@+id/tb_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="top"
+            android:background="#FFFFFF"
+            android:elevation="5dp"
+            android:gravity="top"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
+                android:padding="2dp"
+                android:src="@drawable/filter_ci">
+            </ImageView>
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/stringless"
+                android:gravity="center"
+                android:text="Comrade"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="36sp"
+                android:textStyle="normal">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/searchBtn"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="false"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/heart"
+                android:visibility="visible">
+            </ImageView>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/tool_layout"
+            android:layout_below="@id/tb_layout"
+            android:orientation="vertical">
+
+            <com.yuyakaido.android.cardstackview.CardStackView
+                android:id="@+id/card_stack_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+
+                android:visibility="gone" />
+
+            <com.skyfishjy.library.RippleBackground
+                android:id="@+id/contentLoader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                app:rb_color="@color/pink_700"
+                app:rb_duration="2000"
+                app:rb_radius="32dp"
+                app:rb_rippleAmount="4"
+                app:rb_scale="4"
+                app:rb_strokeWidth="20dp"
+                app:rb_type="strokeRipple">
+
+                <ImageView
+                    android:id="@+id/centerImage"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/persion"
+                    android:visibility="visible" />
+            </com.skyfishjy.library.RippleBackground>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/tool_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/nopeBtn"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_alignParentStart="true"
+                android:elevation="-50dp"
+                android:src="@drawable/close">
+
+            </ImageView>
+
+
+            <ImageView
+                android:id="@+id/rewindBtn"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/superLike"
+                android:layout_toRightOf="@id/nopeBtn"
+                android:elevation="-50dp"
+                android:src="@drawable/reload">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/superLike"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_centerInParent="true"
+                android:elevation="-50dp"
+                android:src="@drawable/star">
+
+            </ImageView>
+
+
+            <ImageView
+                android:id="@+id/likeBtn"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_alignParentEnd="true"
+                android:elevation="-50dp"
+                android:src="@drawable/heart">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/like_booster"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/likeBtn"
+                android:layout_toEndOf="@id/superLike"
+                android:elevation="-50dp"
+                android:src="@drawable/booster">
+
+            </ImageView>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

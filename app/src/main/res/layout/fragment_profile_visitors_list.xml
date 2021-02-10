@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.menuTabs.ProfileVisitorsListFragment">
+
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchVisitors"
+            style="@style/Widget.AppCompat.SearchView"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_strock_gray"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search visitors"
+            app:searchIcon="@drawable/ic_baseline_search_24">
+
+        </androidx.appcompat.widget.SearchView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/visitors_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/searchVisitors"
+            tools:listitem="@layout/visitors_list_ui">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+</layout>

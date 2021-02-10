@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_back_two"
+        tools:context=".activity.SignUpChooserActivity">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_above="@id/myLogo"
+            android:padding="20dp"
+            android:src="@drawable/img">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/myLogo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            android:src="@drawable/logo_img">
+
+        </ImageView>
+
+
+        <LinearLayout
+            android:id="@+id/l_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:padding="20dp"
+
+            >
+
+            <LinearLayout
+                android:id="@+id/loginWithNoBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:background="@drawable/edit_text_back"
+                android:orientation="horizontal"
+                android:padding="12dp"
+
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/call_icon"
+                    android:tintMode="src_in">
+
+                </ImageView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="Continue with Phone Number"
+                    android:textAllCaps="true">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/more_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+
+                <LinearLayout
+                    android:id="@+id/googleBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_back"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/google_img"
+                        android:tintMode="src_in">
+
+                    </ImageView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="Continue with google"
+
+                        android:textAllCaps="true">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fbBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
+                    android:background="@drawable/edit_text_back"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/fb"
+                        android:tintMode="src_in">
+
+                    </ImageView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="Continue with facebook"
+                        android:textAllCaps="true">
+
+                    </TextView>
+
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/myFbBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                    </com.facebook.login.widget.LoginButton>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/moreBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/bold"
+                android:text="More option"
+                android:textSize="18sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

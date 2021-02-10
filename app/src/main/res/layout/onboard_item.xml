@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/topText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+
+        android:visibility="gone"
+        android:text="Its a match"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="40sp"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_onboard"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/on_bord_two"
+ />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_bold"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:paddingRight="20dp"
+                android:text="Get a date"
+                android:textAllCaps="false"
+                android:textSize="24sp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:paddingHorizontal="40dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Swipe right to get a match with people you like from your area."
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

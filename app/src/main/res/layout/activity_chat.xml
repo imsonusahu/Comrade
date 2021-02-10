@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.ChatActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/chatHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="2dp"
+            android:padding="5dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="5dp"
+                android:padding="15dp"
+                android:src="@drawable/ic_arrow_back_">
+
+
+            </ImageView>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfileChat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/backBtn"
+                android:src="@drawable/persion">
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+
+            <TextView
+                android:id="@+id/userNameChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/userProfileChat"
+                android:fontFamily="@font/mabry_bold_pro"
+                android:text="Sonu Sahu"
+                android:textSize="18sp">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userNameChat"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/userProfileChat"
+                android:fontFamily="@font/regular"
+                android:text="Online"
+                android:textColor="@color/green"
+                android:textSize="12sp">
+
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/privacyBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/shield"></ImageView>
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="25dp"
+                android:layout_toStartOf="@id/privacyBtn"
+                android:src="@drawable/ic_baseline_videocam_24"></ImageView>
+
+        </RelativeLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btmHeader"
+            android:layout_below="@id/chatHeader"
+            android:padding="5dp"
+            tools:listitem="@layout/msg_sent"
+
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <RelativeLayout
+            android:id="@+id/btmHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/sendBtn"
+                android:background="@drawable/btn_strock_gray">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:hint="Type a message..."
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/black">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/sendBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_send_24"
+                android:visibility="visible">
+
+            </ImageView>
+
+
+            <ImageView
+                android:id="@+id/attachmentBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                android:visibility="gone">
+
+            </ImageView>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</layout>
