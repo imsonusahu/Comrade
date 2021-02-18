@@ -12,9 +12,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-
-
-
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -23,11 +21,13 @@
         android:fullBackupOnly="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ErrorActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.ErrorActivity" />
         <activity android:name=".activity.VerifyActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.MenuActivity" />
@@ -36,7 +36,7 @@
         <activity android:name=".activity.BaseProfileActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LocationActivity" />
-        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.UploadActivity" />
         <activity android:name=".activity.OtpActivity" />
         <activity android:name=".activity.FinishActivity" />
         <activity android:name=".activity.LoginActivity" />
@@ -83,12 +83,11 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".utils.MyLocation" />
-
+        <service android:name=".utils.LocationService" />
 
         <receiver
             android:name=".brodcastReceiver.NetworkChangeReceiver"
-            android:label=".brodcastReceiver.NetworkChangeReceiver" >
+            android:label=".brodcastReceiver.NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />

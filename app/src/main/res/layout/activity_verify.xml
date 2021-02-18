@@ -1,9 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.VerifyActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.VerifyActivity">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/verification">
+
+            </ImageView>
+
+        </FrameLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:scrollbars="vertical">
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_round_close_24"
+                android:id="@+id/image_pose">
+            </ImageView>
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_info_24"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/info">
+            </ImageView>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_gravity="bottom"
+            android:scrollbars="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:layout_above="@id/clickPose"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_bold"
+                android:textAlignment="center"
+                android:text="Click a picture on the same pose.\nTo verify your account."
+                android:textSize="16sp">
+
+            </TextView>
+
+
+            <com.royrodriguez.transitionbutton.TransitionButton
+                android:id="@+id/clickPose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Click Photo"
+                android:textAllCaps="false"
+                android:layout_alignParentBottom="true"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="18sp"
+                app:defaultColor="@color/pink"
+                app:loaderColor="@color/pink" />
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+</layout>

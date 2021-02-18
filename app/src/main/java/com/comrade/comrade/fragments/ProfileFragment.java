@@ -21,6 +21,7 @@ import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.activity.BaseProfileActivity;
 import com.comrade.comrade.activity.SettingActivity;
+import com.comrade.comrade.activity.VerifyActivity;
 import com.comrade.comrade.databinding.FragmentProfileBinding;
 import com.comrade.comrade.volly.Variables;
 
@@ -39,7 +40,6 @@ public class ProfileFragment extends Fragment {
     Fragment editProfileFragment = new EditProfileFragment();
 
     QueryPreferences queryPreferences;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,9 +50,10 @@ public class ProfileFragment extends Fragment {
         queryPreferences=new QueryPreferences(getActivity());
         onCLick();
 
-
-      //  getUserData();
+        getUserData();
         setData();
+
+
 
         return binding.getRoot();
     }
@@ -87,28 +88,28 @@ public class ProfileFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
 
 
-                    queryPreferences.setName(jsonObject.getString("username"),
-                            jsonObject.getString("dob"));
-                    queryPreferences.setGender(jsonObject.getString("gender"));
+                    queryPreferences.setName(jsonObject.optString("username"),
+                            jsonObject.optString("dob"));
+                    queryPreferences.setGender(jsonObject.optString("gender"));
 
-                    queryPreferences.setAbout(jsonObject.getString("about"));
-                    queryPreferences.setPhone(jsonObject.getString("phone"));
-                    queryPreferences.setHeight(jsonObject.getString("height"));
-                    queryPreferences.relStatus(jsonObject.getString("relationship_status"));
-                    queryPreferences.sexualOrientation(jsonObject.getString("sexuality"));
-                    queryPreferences.lookingForGender(jsonObject.getString("interest_gender"));
-                    queryPreferences.doYouDrink(jsonObject.getString("drinking"));
-                    queryPreferences.doYouSmoke(jsonObject.getString("smoking"));
-                    queryPreferences.gotoSchool(jsonObject.getString("education"));
-                    queryPreferences.setShareMood(jsonObject.getString("moods"));
-                    queryPreferences.doYouWork(jsonObject.getString("job"),
-                            jsonObject.getString("company"));
+                    queryPreferences.setAbout(jsonObject.optString("about"));
+                    queryPreferences.setPhone(jsonObject.optString("phone"));
+                    queryPreferences.setHeight(jsonObject.optString("height"));
+                    queryPreferences.relStatus(jsonObject.optString("relationship_status"));
+                    queryPreferences.sexualOrientation(jsonObject.optString("sexuality"));
+                    queryPreferences.lookingForGender(jsonObject.optString("interest_gender"));
+                    queryPreferences.doYouDrink(jsonObject.optString("drinking"));
+                    queryPreferences.doYouSmoke(jsonObject.optString("smoking"));
+                    queryPreferences.gotoSchool(jsonObject.optString("education"));
+                    queryPreferences.setShareMood(jsonObject.optString("moods"));
+                    queryPreferences.doYouWork(jsonObject.optString("job"),
+                            jsonObject.optString("company"));
 
-                    queryPreferences.setWhatMakeHappy(jsonObject.getString("interest_in"),
-                            jsonObject.getString("interest_in"),
-                            jsonObject.getString("interest_in"),
-                            jsonObject.getString("interest_in"),
-                            jsonObject.getString("interest_in"));
+                    queryPreferences.setWhatMakeHappy(jsonObject.optString("interest_in"),
+                            jsonObject.optString("interest_in"),
+                            jsonObject.optString("interest_in"),
+                            jsonObject.optString("interest_in"),
+                            jsonObject.optString("interest_in"));
 
 
                 } catch (JSONException e) {
@@ -182,6 +183,16 @@ public class ProfileFragment extends Fragment {
 
 
                 Intent intent=new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        binding.verifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getActivity(), VerifyActivity.class);
                 startActivity(intent);
             }
         });

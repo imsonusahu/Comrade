@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/messageTextView"
+        android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -17,10 +17,17 @@
         tools:text="Message" />
 
     <TextView
-        android:id="@+id/nameTextView"
+        android:id="@+id/messageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:background="@drawable/msg_recieve"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="@dimen/padding_10"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         tools:text="Name" />
 

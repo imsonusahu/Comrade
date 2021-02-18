@@ -159,8 +159,6 @@ public class OtpActivity extends AppCompatActivity {
                             Log.e("otp_verify", " OTP status " + checkUser);
 
 
-
-
                             sessionManager.createSession(uId);
                             Intent intent = new Intent(OtpActivity.this, BaseProfileActivity.class);
                             queryPreferences.setUid(uId);

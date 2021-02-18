@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MyLocation extends Service implements LocationListener {
+public class LocationService extends Service implements LocationListener {
 
     boolean isGPSEnable = false;
     boolean isNetworkEnable = false;
@@ -29,9 +29,7 @@ public class MyLocation extends Service implements LocationListener {
     public static String str_receiver = "servicetutorial.service.receiver";
     Intent intent;
 
-
-    public MyLocation() {
-
+    public LocationService() {
     }
 
     @Nullable

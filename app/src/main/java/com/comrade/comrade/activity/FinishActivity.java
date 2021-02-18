@@ -1,7 +1,6 @@
 package com.comrade.comrade.activity;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +40,7 @@ public class FinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_finish);
 
-        queryPreferences=new QueryPreferences(this);
+        queryPreferences = new QueryPreferences(this);
 
         onClick();
 
@@ -49,7 +48,6 @@ public class FinishActivity extends AppCompatActivity {
     }
 
     private void onClick() {
-
 
 
         Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.slide_in_up);
@@ -62,7 +60,6 @@ public class FinishActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
                 getUserData();
 
             }
@@ -72,12 +69,11 @@ public class FinishActivity extends AppCompatActivity {
     public void getUserData() {
 
 
-        HashMap< String, String > user;
+        HashMap<String, String> user;
         user = queryPreferences.getUserDetail();
 
 
         JSONObject object = new JSONObject();
-
 
 
         try {
@@ -97,6 +93,10 @@ public class FinishActivity extends AppCompatActivity {
             object.put("moods", user.get(queryPreferences.shareMood));
             object.put("job", user.get(queryPreferences.jobTitle));
             object.put("company", user.get(queryPreferences.company));
+            object.put("lat", user.get(queryPreferences.latitude));
+            object.put("long", user.get(queryPreferences.longitude));
+            object.put("user_type", "free");
+
             object.put("interest_in", user.get(queryPreferences.hasTag4));
             object.put("interest_in", user.get(queryPreferences.hasTag3));
             object.put("interest_in", user.get(queryPreferences.hasTag2));
@@ -105,38 +105,31 @@ public class FinishActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
 
-            Log.e("FinishActivity",e.getMessage());
+            Log.e("FinishActivity", e.getMessage());
         }
 
 
         final String mRequestBody = object.toString();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.USER_EDIT, new Response.Listener< String >() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.USER_EDIT, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Volly", "Response profile " + response);
-
+                Log.e("Volly", "Response profile update " + response);
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    String message = jsonObject.getString("message");
+                    Log.e(TAG, "Upload profile response is : " + message);
 
-                    String message=jsonObject.getString("message");
+                    if (message.matches("success")) {
 
-                    Log.e(TAG,"Upload profile response is : "+message);
-
-
-                    if (message.matches("success")){
-
-                        Intent intent=new Intent(FinishActivity.this, LocationActivity.class);
+                        Intent intent = new Intent(FinishActivity.this, MainActivity.class);
                         startActivity(intent);
 
-                    }else {
+                    } else {
 
-                        Log.e(TAG,"Upload profile response is : "+message);
+                        Log.e(TAG, "Upload profile response is : " + message);
                     }
-
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -153,8 +146,8 @@ public class FinishActivity extends AppCompatActivity {
         }) {
 
             @Override
-            public Map< String, String > getHeaders() throws AuthFailureError {
-                HashMap< String, String > headers = new HashMap< String, String >();
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }

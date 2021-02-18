@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
-import com.comrade.comrade.activity.ProfileActivity;
+import com.comrade.comrade.activity.UploadActivity;
 import com.comrade.comrade.databinding.FragmentWorkBinding;
 
 
@@ -56,7 +56,7 @@ public class WorkFragment extends Fragment {
                 companyName=binding.companyName.getText().toString();
 
                 setData(jobTitle,companyName);
-                startActivity(new Intent(getActivity(), ProfileActivity.class));
+                startActivity(new Intent(getActivity(), UploadActivity.class));
             }
         });
     }

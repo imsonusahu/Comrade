@@ -43,8 +43,10 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                queryPreferences.clearPreference();
+
                 sessionManager.logout();
+                queryPreferences.clearPreference();
+
 
             }
         });

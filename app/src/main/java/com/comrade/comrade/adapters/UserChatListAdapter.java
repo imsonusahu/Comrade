@@ -45,12 +45,13 @@ public class UserChatListAdapter extends RecyclerView.Adapter<UserChatListAdapte
         UsersListChatModel chatModel = arrayList.get(position);
 
         holder.userName.setText(chatModel.getUserName());
-        holder.msgTime.setText(chatModel.getTiming());
-        holder.lastMsg.setText(chatModel.getLastMsg());
+        String roomId=chatModel.getRoomId();
+
+
 
         try {
             Glide.with(context)
-                    .load(chatModel.getProfile())
+                    .load(chatModel.getProfilePic())
                     .centerCrop()
                     .into(holder.imageView);
         } catch (Exception e) {
@@ -65,8 +66,10 @@ public class UserChatListAdapter extends RecyclerView.Adapter<UserChatListAdapte
 
                 Intent intent = new Intent(context, ChatActivity.class);
                 intent.putExtra("name", chatModel.getUserName());
-                intent.putExtra("picUrl", chatModel.getProfile());
-                intent.putExtra("status", chatModel.isStatus());
+                intent.putExtra("pic", chatModel.getProfilePic());
+                intent.putExtra("matchId", chatModel.getMatchId());
+                intent.putExtra("roomId", chatModel.getMatchId());
+
                 context.startActivity(intent);
             }
         });

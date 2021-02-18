@@ -1,15 +1,10 @@
 package com.comrade.comrade.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -22,9 +17,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
     ActivitySplashBinding binding;
-
     SessionManager sessionManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,38 +26,26 @@ public class SplashActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         requestWindowFeature(1);
 
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         binding.logoName.setAnimation(AnimationUtils.loadAnimation(SplashActivity.this, R.anim.fade_in));
 
         sessionManager = new SessionManager(this);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (sessionManager.isLogin()) {
+        new Handler().postDelayed(() -> {
 
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(SplashActivity.this, SignUpChooserActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+
+            if (sessionManager.isLogin()){
+
+                Intent intent=new Intent(SplashActivity.this,LocationActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                Intent intent=new Intent(SplashActivity.this,LocationActivity.class);
+                startActivity(intent);
+                finish();
             }
+
+
         }, 500);
-
-/*
-
-        Intent intent = new Intent(SplashActivity.this, FinishActivity.class);
-        startActivity(intent);
-        finish();
-*/
-
-
-
     }
-
-
 }

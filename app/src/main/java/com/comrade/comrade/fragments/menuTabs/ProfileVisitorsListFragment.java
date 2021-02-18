@@ -1,13 +1,12 @@
 package com.comrade.comrade.fragments.menuTabs;
 
-import android.app.assist.AssistStructure;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -27,7 +26,6 @@ import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.adapters.menu.VisitorsAdapter;
 import com.comrade.comrade.databinding.FragmentProfileVisitorsListBinding;
 import com.comrade.comrade.models.VisitorsModel;
-import com.comrade.comrade.models.WhoLikedModel;
 import com.comrade.comrade.volly.Variables;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,12 +51,9 @@ public class ProfileVisitorsListFragment extends Fragment {
     private QueryPreferences queryPreferences;
     private HashMap<String, String> users;
 
-    int pastVisibleItems, visibleItemCount, totalItemCount;
-    Boolean loading = true;
+    LinearLayoutManager linearLayoutManager;
 
-    private ArrayList<String> visitorUidList=new ArrayList<>();
-    private LinearLayoutManager linearLayoutManager;
-
+    int listSize = 5;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -83,13 +78,13 @@ public class ProfileVisitorsListFragment extends Fragment {
     private void initView() {
 
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        binding.visitorsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.visitorsRv.setLayoutManager(linearLayoutManager);
         binding.visitorsRv.setHasFixedSize(true);
         binding.visitorsRv.setItemViewCacheSize(20);
         binding.visitorsRv.setDrawingCacheEnabled(true);
         binding.visitorsRv.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         binding.visitorsRv.setItemAnimator(new DefaultItemAnimator());
-        adapter = new VisitorsAdapter(getActivity(), arrayList);
+        adapter = new VisitorsAdapter(getActivity(), arrayList,listSize);
         binding.visitorsRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         searchViewOne();
@@ -97,39 +92,6 @@ public class ProfileVisitorsListFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        Log.e("search", "onStart() profile");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Log.e("search", "onResume() profile");
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.e("search", "onPause() profile");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        Log.e("search", "onDestroyView() profile");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("search", "onDestroy() profile");
-    }
 
     private void searchViewOne() {
         binding.searchVisitors.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -157,7 +119,7 @@ public class ProfileVisitorsListFragment extends Fragment {
     }
 
 
-    private void getVisitors( ) {
+    private void getVisitors() {
 
 
         arrayList = new ArrayList<>();
@@ -165,7 +127,7 @@ public class ProfileVisitorsListFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("visited_by", users.get(queryPreferences.uid));
-            Log.e("json", "My Id : "+users.get(queryPreferences.uid));
+            Log.e("json", "visited_by Id : " + users.get(queryPreferences.uid));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -192,9 +154,10 @@ public class ProfileVisitorsListFragment extends Fragment {
 
                         JSONObject data = arr.getJSONObject(i);
 
-                        String uid = data.optString("visited_on_profile");
+                        String uid = data.optString("visited_by");
 
-                        Log.e("LOG_VOLLEY", "Visitors response : " + uid);
+                        Log.e("json", "visited_on_profile Id : " + uid);
+
                         getProfiles(uid);
 
 
@@ -255,7 +218,7 @@ public class ProfileVisitorsListFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.FIND_USER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Volly", "Visitors user profile response :  " + response);
+                Log.e("Volley", "Visitors user profile response :  " + response);
 
                 try {
                     JSONObject data = new JSONObject(response);
@@ -278,12 +241,12 @@ public class ProfileVisitorsListFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
 
-                    Log.e(getActivity().getLocalClassName(), "Visitors user profile Error Response" + e.toString());
+                    Log.e("ProfileVisits", "Visitors Error Response" + e.toString());
                 }
 
 
             }
-        }, error -> Log.e("Volly", "Error Response" + error.toString())) {
+        }, error -> Log.e("Volley", "Error Response" + error.toString())) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -316,26 +279,30 @@ public class ProfileVisitorsListFragment extends Fragment {
         binding.simmerView.stopShimmerAnimation();
 
 
-        binding.visitorsRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0)
-                {
-                    visibleItemCount = linearLayoutManager.getChildCount();
-                    totalItemCount = linearLayoutManager.getItemCount();
-                    pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition();
+        binding.visitorsRv.addOnScrollListener(new  RecyclerView.OnScrollListener() {
 
-                    if (!loading) {
-                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                            loading = true;
-                            //page = page+1;
-                            getVisitors();
-                        }
-                    }
+
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    Log.d("scroll", "idle");
+
+                    /*listSize=10;
+                    adapter.notifyDataSetChanged();*/
+                } else if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
+                    Log.d("scroll", "settling");
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    Log.d("scroll", "dragging");
                 }
             }
-        });
 
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
 
 }

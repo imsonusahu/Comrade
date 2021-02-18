@@ -20,21 +20,24 @@ import com.comrade.comrade.models.VisitorsModel;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.VH> {
 
     ArrayList<VisitorsModel> arrayList;
     Context context;
-    boolean isActive;
+    private int delayAnimate;
 
-
-    public VisitorsAdapter(FragmentActivity activity, ArrayList<VisitorsModel> myArraylist) {
+    public VisitorsAdapter(FragmentActivity activity, ArrayList<VisitorsModel> myArraylist, int listCountz) {
 
         context = activity;
         arrayList = myArraylist;
+
     }
 
+    @NotNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.visitors_list_ui, parent, false);
@@ -47,10 +50,11 @@ public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.VH> {
 
         VisitorsModel profileModel = arrayList.get(position);
 
-
         String age = profileModel.getDob();
         holder.name.setText(profileModel.getUsername() + ", " + age);
         holder.gender.setText(profileModel.getGender());
+
+
 
         /*holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,35 +73,26 @@ public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.VH> {
             }
         });*/
 
-
-
-
         holder.button.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
 
-
                 if (buttonState) {
                     // Button is active
-
 
                     button.setImageResource(R.drawable.like_icon);
 
                     holder.sendHeart.setText("Sent");
                     holder.sendHeart.setTextColor(Color.RED);
 
-
                 } else {
                     // Button is inactive
-
                     button.setImageResource(R.drawable.unlike_icon);
                     holder.sendHeart.setText("Request match");
                     holder.sendHeart.setTextColor(Color.BLACK);
 
                 }
-                Log.e("datax",holder.sendHeart.getText()+"");
-
-
+                Log.e("datax", holder.sendHeart.getText() + "");
             }
 
             @Override
@@ -111,7 +106,6 @@ public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.VH> {
             }
         });
 
-
         try {
 
             Glide.with(context)
@@ -124,43 +118,37 @@ public class VisitorsAdapter extends RecyclerView.Adapter<VisitorsAdapter.VH> {
             e.printStackTrace();
             Log.e("adapter", e.getMessage());
         }
-
-
     }
 
     @Override
     public int getItemCount() {
         return arrayList != null ? arrayList.size() : 0;
-
     }
 
     public void updatesList(ArrayList<VisitorsModel> result) {
 
-        arrayList=new ArrayList<>();
+        arrayList = new ArrayList<>();
         arrayList.addAll(result);
         notifyDataSetChanged();
-
     }
-
 
     public static class VH extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        TextView name,gender,sendHeart;
-
+        TextView name, gender, sendHeart;
         SparkButton button;
 
         public VH(View itemView) {
             super(itemView);
 
-
-            imageView=itemView.findViewById(R.id.userImgSearchList);
-            name=itemView.findViewById(R.id.usernameSearchList);
-            gender=itemView.findViewById(R.id.genderProfileSearch);
-            button=itemView.findViewById(R.id.like_button);
-            sendHeart=itemView.findViewById(R.id.sendHeartBtn);
+            imageView = itemView.findViewById(R.id.userImgSearchList);
+            name = itemView.findViewById(R.id.usernameSearchList);
+            gender = itemView.findViewById(R.id.genderProfileSearch);
+            button = itemView.findViewById(R.id.like_button);
+            sendHeart = itemView.findViewById(R.id.sendHeartBtn);
 
 
         }
     }
+
 }

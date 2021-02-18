@@ -1,6 +1,5 @@
 package com.comrade.comrade.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,12 +38,11 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return new ViewHolder(view);
     }
 
-    @SuppressLint({"ClickableViewAccessibility", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UsersModel data = items.get(position);
 
-        Log.e("CardStackAdapter", data.getProfilePic());
+        Log.e("CardStackAdapter","User list adapter"+items.size());
 
         try {
             Glide.with(context)
@@ -58,11 +56,9 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
 
         holder.name.setText(data.getUsername());
-        holder.job.setText(data.getJob());
-        holder.school.setText(data.getEducation());
-        holder.location.setText(data.getDistance()+" Km");
-
-
+//        holder.job.setText(data.getJob());
+//        holder.school.setText(data.getEducation());
+//        holder.location.setText(String.format("%s Km", data.getDistance()));
 
 
     }

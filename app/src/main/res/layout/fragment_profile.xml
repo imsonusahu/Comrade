@@ -14,369 +14,390 @@
         android:orientation="vertical"
         tools:context=".fragments.ProfileFragment">
 
-        <RelativeLayout
-            android:id="@+id/tb_layout"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@color/white"
-            tools:ignore="UselessParent">
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:fillViewport="true">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/btn_setting"
-                android:background="@android:color/transparent"
-                android:padding="2dp"
-                android:src="@drawable/setting_ic">
-
-            </ImageView>
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/stringless"
-                android:text="Comrade"
-                android:textAlignment="center"
-                android:textColor="@color/purple_500"
-                android:textSize="30sp"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <ImageView
-                android:id="@+id/editProfBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/edit_profile_ic"
-                app:tint="@android:color/darker_gray">
-
-            </ImageView>
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:id="@+id/imgLayout"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_below="@+id/tb_layout"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/tb_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@color/white"
+                    tools:ignore="UselessParent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/btn_setting"
+                        android:background="@android:color/transparent"
+                        android:padding="2dp"
+                        android:src="@drawable/setting_ic">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/stringless"
+                        android:text="Comrade"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_500"
+                        android:textSize="30sp"
+                        android:textStyle="bold">
+
+                    </TextView>
 
 
-                <ImageView
-                    android:id="@+id/profile_pic"
-                    android:layout_width="120dp"
-                    android:layout_height="150dp"
+                    <ImageView
+                        android:id="@+id/editProfBtn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/edit_profile_ic"
+                        app:tint="@android:color/darker_gray">
 
-                    android:src="@drawable/persion">
+                    </ImageView>
+                </RelativeLayout>
 
-                </ImageView>
+                <LinearLayout
+                    android:id="@+id/imgLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@+id/tb_layout"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="-30dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@drawable/add_icon">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
 
-                </ImageView>
+                        <ImageView
+                            android:id="@+id/profile_pic"
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
 
+                            android:src="@drawable/persion">
+
+                        </ImageView>
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="-30dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/add_icon">
+
+
+                        </ImageView>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:id="@+id/userNameAndAge"
+                        android:textSize="24sp">
+
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="50dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textAlignment="center"
+                        android:textColor="#919090"
+                        android:id="@+id/about"
+                        android:textSize="12sp">
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F6F5F6">
+
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="180dp"
+                                android:layout_height="240dp"
+                                android:layout_margin="10dp"
+                                android:backgroundTintMode="add"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="15dp"
+                                app:cardElevation="0dp">
+
+
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="240dp"
+                                    android:layout_gravity="center"
+
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/verify_icon">
+
+                                    </ImageView>
+
+
+                                    <TextView
+                                        android:layout_width="160dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:fontFamily="@font/montserrat_semi_bold"
+                                        android:text="Get Verified profile "
+                                        android:textAlignment="center"
+                                        android:textColor="#222121"
+                                        android:textSize="14sp">
+
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="50dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:fontFamily="@font/montserrat_semi_bold"
+                                        android:paddingHorizontal="20dp"
+                                        android:text="Let people know they can trust you"
+                                        android:textAlignment="center"
+                                        android:textColor="#808080"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+
+                                    <Button
+                                        android:layout_width="120dp"
+                                        android:layout_height="40dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="15dp"
+                                        android:background="@drawable/btn_back"
+                                        android:elevation="0dp"
+                                        android:fontFamily="@font/montserrat_medium"
+                                        android:gravity="center"
+                                        android:text="Verify"
+                                        android:id="@+id/verifyBtn"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white">
+
+                                    </Button>
+
+                                </LinearLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="240dp"
+                                android:layout_margin="10dp"
+                                android:backgroundTintMode="add"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="15dp"
+                                app:cardElevation="0dp">
+
+
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="240dp"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+
+                                    android:padding="10dp">
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/green_check">
+
+                                    </ImageView>
+
+
+                                    <TextView
+                                        android:layout_width="160dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:fontFamily="@font/montserrat_semi_bold"
+                                        android:text="Finish your profile"
+                                        android:textAlignment="center"
+                                        android:textColor="#222121"
+                                        android:textSize="14sp">
+
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="50dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:fontFamily="@font/montserrat_semi_bold"
+                                        android:paddingHorizontal="20dp"
+                                        android:text="Answer the questions to show off the real you"
+                                        android:textAlignment="center"
+                                        android:textColor="#808080"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+
+                                    <Button
+                                        android:layout_width="120dp"
+                                        android:layout_height="40dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="15dp"
+                                        android:background="@drawable/btn_back"
+                                        android:id="@+id/completeProfile"
+                                        android:backgroundTint="@color/green"
+                                        android:elevation="0dp"
+                                        android:fontFamily="@font/montserrat_medium"
+                                        android:gravity="center"
+                                        android:text="Finish"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white">
+
+                                    </Button>
+
+                                </LinearLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="180dp"
+                                android:layout_height="240dp"
+                                android:layout_margin="10dp"
+                                android:backgroundTintMode="add"
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="15dp"
+                                app:cardElevation="0dp">
+
+
+                                <LinearLayout
+                                    android:layout_width="180dp"
+                                    android:layout_height="240dp"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/booster">
+
+                                    </ImageView>
+
+                                    <TextView
+                                        android:layout_width="160dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:fontFamily="@font/montserrat_semi_bold"
+                                        android:text="Get match faster"
+                                        android:textAlignment="center"
+                                        android:textColor="#222121"
+                                        android:textSize="14sp">
+
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="5dp"
+                                        android:fontFamily="@font/montserrat_semi_bold"
+                                        android:paddingHorizontal="20dp"
+                                        android:text="Use credits to boost your profile to get more right swipe."
+                                        android:textAlignment="center"
+                                        android:textColor="#808080"
+                                        android:textSize="12sp">
+
+                                    </TextView>
+
+
+                                    <Button
+                                        android:layout_width="120dp"
+                                        android:layout_height="40dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="15dp"
+                                        android:background="@drawable/btn_back"
+                                        android:backgroundTint="@color/purple_500"
+                                        android:elevation="0dp"
+                                        android:fontFamily="@font/montserrat_medium"
+                                        android:gravity="center"
+                                        android:text="Get credits"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white">
+
+                                    </Button>
+
+                                </LinearLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
 
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
 
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:id="@+id/userNameAndAge"
-                android:textSize="24sp">
 
-            </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAlignment="center"
-                android:textColor="#919090"
-                android:id="@+id/about"
-                android:textSize="12sp">
 
-            </TextView>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F6F5F6">
-
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="180dp"
-                        android:layout_height="240dp"
-                        android:layout_margin="10dp"
-                        android:backgroundTintMode="add"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="0dp">
-
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="240dp"
-                            android:layout_gravity="center"
-
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/verify_icon">
-
-                            </ImageView>
-
-
-                            <TextView
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="@font/montserrat_semi_bold"
-                                android:text="Get Verified profile "
-                                android:textAlignment="center"
-                                android:textColor="#222121"
-                                android:textSize="14sp">
-
-                            </TextView>
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="50dp"
-                                android:layout_marginVertical="5dp"
-                                android:fontFamily="@font/montserrat_semi_bold"
-                                android:paddingHorizontal="20dp"
-                                android:text="Let people know they can trust you"
-                                android:textAlignment="center"
-                                android:textColor="#808080"
-                                android:textSize="12sp">
-
-                            </TextView>
-
-
-                            <Button
-                                android:layout_width="120dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="15dp"
-                                android:background="@drawable/btn_back"
-                                android:elevation="0dp"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:gravity="center"
-                                android:text="Verify"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white">
-
-                            </Button>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="240dp"
-                        android:layout_margin="10dp"
-                        android:backgroundTintMode="add"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="0dp">
-
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="240dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical"
-
-                            android:padding="10dp">
-
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/green_check">
-
-                            </ImageView>
-
-
-                            <TextView
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="@font/montserrat_semi_bold"
-                                android:text="Finish your profile"
-                                android:textAlignment="center"
-                                android:textColor="#222121"
-                                android:textSize="14sp">
-
-                            </TextView>
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="50dp"
-                                android:layout_marginVertical="5dp"
-                                android:fontFamily="@font/montserrat_semi_bold"
-                                android:paddingHorizontal="20dp"
-                                android:text="Answer the questions to show off the real you"
-                                android:textAlignment="center"
-                                android:textColor="#808080"
-                                android:textSize="12sp">
-
-                            </TextView>
-
-
-                            <Button
-                                android:layout_width="120dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="15dp"
-                                android:background="@drawable/btn_back"
-                                android:id="@+id/completeProfile"
-                                android:backgroundTint="@color/green"
-                                android:elevation="0dp"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:gravity="center"
-                                android:text="Finish"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white">
-
-                            </Button>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="180dp"
-                        android:layout_height="240dp"
-                        android:layout_margin="10dp"
-                        android:backgroundTintMode="add"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="0dp">
-
-
-                        <LinearLayout
-                            android:layout_width="180dp"
-                            android:layout_height="240dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/booster">
-
-                            </ImageView>
-
-                            <TextView
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="@font/montserrat_semi_bold"
-                                android:text="Get match faster"
-                                android:textAlignment="center"
-                                android:textColor="#222121"
-                                android:textSize="14sp">
-
-                            </TextView>
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginVertical="5dp"
-                                android:fontFamily="@font/montserrat_semi_bold"
-                                android:paddingHorizontal="20dp"
-                                android:text="Use credits to boost your profile to get more right swipe."
-                                android:textAlignment="center"
-                                android:textColor="#808080"
-                                android:textSize="12sp">
-
-                            </TextView>
-
-
-                            <Button
-                                android:layout_width="120dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="15dp"
-                                android:background="@drawable/btn_back"
-                                android:backgroundTint="@color/purple_500"
-                                android:elevation="0dp"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:gravity="center"
-                                android:text="Get credits"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white">
-
-                            </Button>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-        </LinearLayout>
-
+        </ScrollView>
 
     </LinearLayout>
 </layout>

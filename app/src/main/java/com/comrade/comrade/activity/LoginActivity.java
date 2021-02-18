@@ -56,12 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         queryPreferences = new QueryPreferences(this);
 
 
-
-
-
-
-
-
         onClick();
 
 

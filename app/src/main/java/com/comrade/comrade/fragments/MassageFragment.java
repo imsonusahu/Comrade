@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+
 import androidx.viewpager.widget.ViewPager;
 
 import com.comrade.comrade.R;

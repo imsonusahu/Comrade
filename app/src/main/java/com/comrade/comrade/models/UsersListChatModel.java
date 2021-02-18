@@ -3,16 +3,46 @@ package com.comrade.comrade.models;
 public class UsersListChatModel {
 
 
-    private String id, userName, lastMsg, timing, profile;
+    private String myId,uid,roomId,profilePic,matchId,userName;
 
-    private boolean status;
-
-    public String getId() {
-        return id;
+    public String getMyId() {
+        return myId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMyId(String myId) {
+        this.myId = myId;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(String matchId) {
+        this.matchId = matchId;
     }
 
     public String getUserName() {
@@ -23,44 +53,12 @@ public class UsersListChatModel {
         this.userName = userName;
     }
 
-    public String getLastMsg() {
-        return lastMsg;
-    }
-
-    public void setLastMsg(String lastMsg) {
-        this.lastMsg = lastMsg;
-    }
-
-    public String getTiming() {
-        return timing;
-    }
-
-    public void setTiming(String timing) {
-        this.timing = timing;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public UsersListChatModel(String id, String userName, String lastMsg, String timing, String profile, boolean status) {
-        this.id = id;
+    public UsersListChatModel(String myId, String uid, String roomId, String profilePic, String matchId, String userName) {
+        this.myId = myId;
+        this.uid = uid;
+        this.roomId = roomId;
+        this.profilePic = profilePic;
+        this.matchId = matchId;
         this.userName = userName;
-        this.lastMsg = lastMsg;
-        this.timing = timing;
-        this.profile = profile;
-        this.status = status;
     }
 }

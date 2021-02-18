@@ -45,9 +45,9 @@ public class SignUpChooserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(this);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up_chooser);
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up_chooser);
+        FacebookSdk.sdkInitialize(this);
         viewInit();
 
         onClick();

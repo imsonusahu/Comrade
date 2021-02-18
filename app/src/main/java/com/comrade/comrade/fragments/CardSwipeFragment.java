@@ -20,11 +20,11 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
+import com.comrade.comrade.activity.FilterActivity;
 import com.comrade.comrade.activity.MenuActivity;
 import com.comrade.comrade.adapters.CardStackAdapter;
 import com.comrade.comrade.databinding.FragmentCardSwipeBinding;
@@ -42,7 +42,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +49,6 @@ import java.util.List;
 import java.util.Map;
 
 public class CardSwipeFragment extends Fragment implements CardStackListener {
-
 
     FragmentCardSwipeBinding binding;
     CardStackLayoutManager manager;
@@ -60,8 +58,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
     QueryPreferences queryPreferences;
     private final String home = "home";
     HashMap<String, String> user;
-
-
 
     int position;
 
@@ -76,35 +72,26 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
         user = queryPreferences.getUserDetail();
 
-
         initView();
         onClick();
 
-
         binding.contentLoader.startRippleAnimation();
-
 
         getUserList();
 
+        new Handler().postDelayed(() -> {
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+            binding.contentLoader.stopRippleAnimation();
+            binding.contentLoader.setVisibility(View.GONE);
+            binding.cardStackView.setVisibility(View.VISIBLE);
 
-                binding.contentLoader.stopRippleAnimation();
-                binding.contentLoader.setVisibility(View.GONE);
-                binding.cardStackView.setVisibility(View.VISIBLE);
-            }
         }, 500);
-
 
         return binding.getRoot();
     }
 
-
     //Send match API
     private void sendMatch() {
-
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -112,31 +99,19 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             jsonObject.put("liked_by", user.get(queryPreferences.uid));
             jsonObject.put("liked_to", likedTo_uid);
 
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
-         String mRequestBody = jsonObject.toString();
+        String mRequestBody = jsonObject.toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.SEND_LIKE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                Log.e("Volly", "Response Send math   " +response);
-
-
-
-
+                Log.e("Volly", "Response Send math : " + response);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volly", "Error Response" + error.toString());
-
-            }
-        }) {
+        }, error -> Log.e("Volly", "Error Response" + error.toString())) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -154,13 +129,9 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             public byte[] getBody() throws AuthFailureError {
                 return mRequestBody.getBytes(StandardCharsets.UTF_8);
             }
-
         };
         Volley.newRequestQueue(getActivity()).add(stringRequest);
-
-
     }
-
 
     //Send super-like API
 
@@ -174,26 +145,21 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
         } catch (JSONException e) {
             e.printStackTrace();
-
-            Log.e("Volly", "Response Send super like  " +e.getMessage());
+            Log.e("Volly", "Response Send super like  " + e.getMessage());
         }
-
         String mRequestBody = jsonObject.toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.SEND_SUPER_LIKE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Volly", "Response Send super like  " +response);
-
+                Log.e("Volly", "Response Send super like  " + response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volly", "Error Response" + error.toString());
-
             }
         }) {
-
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -210,31 +176,25 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             public byte[] getBody() throws AuthFailureError {
                 return mRequestBody.getBytes(StandardCharsets.UTF_8);
             }
-
         };
         Volley.newRequestQueue(getActivity()).add(stringRequest);
-
 
     }
 
     //Get user list API
     private void getUserList() {
 
-
         arrayList = new ArrayList<>();
 
         JSONObject jsonObject = new JSONObject();
         try {
 
-            jsonObject.put("_id", user.get(queryPreferences));
-            jsonObject.put("minage", "20");
-            jsonObject.put("maxage", "90");
-            jsonObject.put("minheight", "170");
-            jsonObject.put("maxheight", "190");
-            jsonObject.put("genderpref", "Female");
-            jsonObject.put("lat", "22.100000");
-            jsonObject.put("lng", "76.120000");
+            jsonObject.put("_id", user.get(queryPreferences.uid));
+            jsonObject.put("genderpref", "Male");
 
+
+            Log.e("jsonx", "Female");
+            Log.e("jsonx", user.get(queryPreferences.uid));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -242,58 +202,50 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             Log.e("json", e.getMessage());
         }
 
-
         final String mRequestBody = jsonObject.toString();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.FILTER_VIEW, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                //  Log.e("LOG_VOLLEY", "Users response" + response);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.FILTER_VIEW, response -> {
+            Log.e("LOG_VOLLEY", "Users response ssssssssssss" + response);
 
+            try {
 
-                try {
+                JSONObject o = new JSONObject(response);
+                JSONArray arr = o.getJSONArray("users");
 
-                    JSONObject o = new JSONObject(response);
-                    JSONArray arr = o.getJSONArray("users");
+                for (int i = 0; i < arr.length(); i++) {
 
+                    JSONObject data = arr.getJSONObject(i);
 
-                    for (int i = 0; i < arr.length(); i++) {
-
-                        JSONObject data = arr.getJSONObject(i);
-
-                        arrayList.add(new UsersModel(data.getString("_id"),
-                                data.getString("phone"),
-                                data.getString("about"), data.getString("company"), data.getString("dob"),
-                                data.getString("drinking"), data.getString("education"), data.getString("email"),
-                                data.getString("gender"), data.getString("height"),
-                                data.getString("interest_gender"),
-                                data.getString("interest_in"),
-                                data.getString("job"), data.getString("interest_gender"),
-                                data.getString("relationship_status"), data.getString("smoking"),
-                                data.getString("username"), data.getString("moods"),
-                                "https://www.imagediamond.com/blog/wp-content/uploads/2019/07/girls-dpz6.jpg",
-                                data.getString("distance"), data.getString("lat"), data.getString("long")));
-
-                        Log.e("CardSwipeFragmet", " user data stack list : " + arrayList.get(i).get_id());
-
-                    }
-                    recyclerViewAdapt();
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    arrayList.add(new UsersModel(data.optString("_id"),
+                            data.optString("phone"),
+                            data.optString("about"),
+                            data.optString("company"),
+                            data.optString("dob"),
+                            data.optString("drinking"),
+                            data.optString("education"),
+                            data.optString("email"),
+                            data.optString("gender"),
+                            data.optString("height"),
+                            data.optString("interest_gender"),
+                            data.optString("interest_in"),
+                            data.optString("job"),
+                            data.optString("interest_gender"),
+                            data.optString("relationship_status"),
+                            data.optString("smoking"),
+                            data.optString("username"),
+                            data.optString("moods"),
+                            "https://www.imagediamond.com/blog/wp-content/uploads/2019/07/girls-dpz6.jpg",
+                            data.optString("distance"),
+                            data.optString("lat"),
+                            data.optString("long")));
+                   // Log.e("LOG_VOLLEY", "Users response ssssssssssss" + response);
                 }
+                recyclerViewAdapt();
 
-
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("LOG_VOLLEY", error.toString());
-
-
-            }
-        }) {
+        }, error -> Log.e("LOG_VOLLEY", error.toString())) {
             @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
@@ -301,16 +253,8 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
             @Override
             public byte[] getBody() throws AuthFailureError {
-                try {
-                    return mRequestBody.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
-
-
-                    return null;
-                }
+                return mRequestBody.getBytes(StandardCharsets.UTF_8);
             }
-
         };
         stringRequest.setShouldCache(false);
 
@@ -332,18 +276,12 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
         } catch (JSONException e) {
             e.printStackTrace();
 
-            Log.e("Volly", "Response visited_on_profile  " +e.getMessage());
+            Log.e("Volly", "Response visited_on_profile  " + e.getMessage());
         }
 
         String mRequestBody = jsonObject.toString();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.VISITOR_REGISTER, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("Volly", "Response visited_on_profile  " +response);
-
-            }
-        }, new Response.ErrorListener() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.VISITOR_REGISTER, response -> Log.e("Volly", "Response visited_on_profile  " + response), new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volly", "Error Response" + error.toString());
@@ -364,7 +302,7 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             }
 
             @Override
-            public byte[] getBody() throws AuthFailureError {
+            public byte[] getBody() {
                 return mRequestBody.getBytes(StandardCharsets.UTF_8);
             }
 
@@ -373,7 +311,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
 
     }
-
 
 
     private void initView() {
@@ -393,33 +330,40 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
     private void onClick() {
 
-        binding.searchBtn.setOnClickListener(new View.OnClickListener() {
+
+
+
+        binding.filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), MenuActivity.class);
+
+                Intent intent=new Intent(getActivity(), FilterActivity.class);
                 startActivity(intent);
             }
         });
-        binding.likeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
-                        .setDirection(Direction.Right)
-                        .setDuration(350)
-                        .setInterpolator(new AccelerateInterpolator())
-                        .build();
-                manager.setSwipeAnimationSetting(setting);
-                binding.cardStackView.swipe();
+        binding.searchBtn.setOnClickListener(v -> {
+
+            Intent intent = new Intent(getActivity(), MenuActivity.class);
+            startActivity(intent);
+        });
+        binding.likeBtn.setOnClickListener(v -> {
+
+            SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
+                    .setDirection(Direction.Right)
+                    .setDuration(350)
+                    .setInterpolator(new AccelerateInterpolator())
+                    .build();
+            manager.setSwipeAnimationSetting(setting);
+            binding.cardStackView.swipe();
 
 
-                Toast.makeText(getActivity(), "Like" + setting.getDirection(), Toast.LENGTH_SHORT).show();
-                Log.e(home, "Direction : " + setting.getDirection());
+            Toast.makeText(getActivity(), "Like" + setting.getDirection(), Toast.LENGTH_SHORT).show();
+            Log.e(home, "Direction : " + setting.getDirection());
 
 
-                sendMatch();
-            }
+            sendMatch();
         });
         binding.rewindBtn.setOnClickListener(v -> {
 
@@ -463,8 +407,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
     }
 
 
-
-
     private void recyclerViewAdapt() {
 
         adapter = new CardStackAdapter(getActivity(), arrayList);
@@ -481,30 +423,29 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
     @Override
     public void onCardSwiped(Direction direction) {
-     //   Log.d("onCardSwiped", "onCardRewound: " + direction);
+        //   Log.d("onCardSwiped", "onCardRewound: " + direction);
 
-   //     Toast.makeText(getActivity(), direction.toString(), Toast.LENGTH_SHORT).show();
-
-
-
-        if (direction==Direction.Right){
-
-            Log.d("onCardSwiped", " Direction :"+direction);
+        //     Toast.makeText(getActivity(), direction.toString(), Toast.LENGTH_SHORT).show();
 
 
-            sendMatch();
-            sendVisitors();
+        if (direction == Direction.Right) {
 
-        }else if (direction==Direction.Left){
+            Log.d("onCardSwiped", " Direction :" + direction);
 
-            Log.d("onCardSwiped", " Direction :"+direction);
 
             sendMatch();
             sendVisitors();
 
-        }else if (direction==Direction.Top){
+        } else if (direction == Direction.Left) {
 
-            Log.d("onCardSwiped", " Direction :"+direction);
+            Log.d("onCardSwiped", " Direction :" + direction);
+
+            sendMatch();
+            sendVisitors();
+
+        } else if (direction == Direction.Top) {
+
+            Log.d("onCardSwiped", " Direction :" + direction);
 
             sendSuperLike();
             sendVisitors();
@@ -518,24 +459,24 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
     @Override
     public void onCardCanceled() {
-       // Log.d("onCardSwiped", "onCardCanceled: ");
+        // Log.d("onCardSwiped", "onCardCanceled: ");
 
     }
 
     @Override
     public void onCardAppeared(View view, int position) {
-     //   Log.d("onCardSwiped", "onCardAppeared: " + position);
+        //   Log.d("onCardSwiped", "onCardAppeared: " + position);
 
 
-        likedTo_uid=arrayList.get(position).get_id();
-        Log.e("onCardAppeared", "Current userId  " +user.get(queryPreferences.uid));
-        Log.e("onCardAppeared", " appear user Id  " +likedTo_uid);
+        likedTo_uid = arrayList.get(position).get_id();
+        Log.e("onCardAppeared", "Current userId  " + user.get(queryPreferences.uid));
+        Log.e("onCardAppeared", " appear user Id  " + likedTo_uid);
 
     }
 
     @Override
     public void onCardDisappeared(View view, int position) {
-      //  Log.d("onCardSwiped", "onCardDisappeared: " + position);
+        //  Log.d("onCardSwiped", "onCardDisappeared: " + position);
 
 
     }

@@ -15,7 +15,11 @@ public class FilterActivity extends AppCompatActivity {
 
     ActivityFilterBinding binding;
 
-    String ftAndCm;
+
+    int minHeight,maxHeight;
+
+
+
 
     @Override
     protected void onCreate(@Nullable  Bundle savedInstanceState) {

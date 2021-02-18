@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10"
+                android:text="0"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/mabry_regular_pro"
@@ -73,6 +73,37 @@
         </RelativeLayout>
 
 
+        <io.supercharge.shimmerlayout.ShimmerLayout
+            android:id="@+id/simmerViewWhoLike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/matchCountLayout"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:shimmer_animation_duration="800">
+
+            <!-- Adding 3 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/simmer_who_like"
+
+                    />
+
+
+                <include layout="@layout/simmer_who_like"
+
+                    />
+
+            </LinearLayout>
+
+        </io.supercharge.shimmerlayout.ShimmerLayout>
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/matchRv"
             android:layout_width="match_parent"
@@ -81,17 +112,10 @@
             android:layout_below="@+id/matchCountLayout"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             tools:itemCount="10"
+            android:visibility="gone"
             tools:listitem="@layout/who_liked_ui">
 
         </androidx.recyclerview.widget.RecyclerView>
-
-        <ProgressBar
-            android:id="@+id/pbWhoLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-        </ProgressBar>
 
 
     </RelativeLayout>

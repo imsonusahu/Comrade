@@ -32,6 +32,7 @@ public class UserChatListFrag extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_chat_list, container, false);
 
+/*
 
         arrayList.add(new UsersListChatModel("2",
                 "Katherin langford",
@@ -44,6 +45,7 @@ public class UserChatListFrag extends Fragment {
                 "How are you!",
                 "5:00pm",
                 "https://i.pinimg.com/474x/d7/ca/f8/d7caf862a1166f24c2ee3b5d4f3897f7--red-hair-girls-marvel-films.jpg", true));
+*/
 
 
         initView();

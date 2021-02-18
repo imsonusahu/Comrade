@@ -64,8 +64,8 @@ public class SessionManager {
 
         editor.clear();
         editor.commit();
-        Intent i=new Intent(context, SignUpChooserActivity.class);
-        context.startActivity(i);
-        ((SignUpChooserActivity)context).finish();
+        Intent intent  = new Intent(context, SignUpChooserActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
     }
 }

@@ -24,7 +24,7 @@
             android:visibility="visible">
 
             <ImageView
-                android:id="@+id/btnBack"
+                android:id="@+id/filterBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentStart="false"
@@ -65,7 +65,6 @@
 
         </RelativeLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -78,8 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="2dp"
-
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <com.skyfishjy.library.RippleBackground
                 android:id="@+id/contentLoader"
@@ -110,8 +108,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             android:background="#FFFFFF"
+            android:gravity="center"
             android:padding="10dp"
             android:visibility="visible">
 
@@ -120,6 +118,7 @@
                 android:layout_width="85dp"
                 android:layout_height="85dp"
                 android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/rewindBtn"
                 android:elevation="-50dp"
                 android:src="@drawable/close">
 
@@ -133,7 +132,6 @@
                 android:layout_centerInParent="true"
                 android:layout_toStartOf="@id/superLike"
                 android:layout_toRightOf="@id/nopeBtn"
-                android:elevation="-50dp"
                 android:src="@drawable/reload">
 
             </ImageView>
@@ -143,8 +141,17 @@
                 android:layout_width="85dp"
                 android:layout_height="85dp"
                 android:layout_centerInParent="true"
-                android:elevation="-50dp"
                 android:src="@drawable/star">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/like_booster"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@id/superLike"
+                android:src="@drawable/booster">
 
             </ImageView>
 
@@ -153,21 +160,9 @@
                 android:id="@+id/likeBtn"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
-                android:layout_alignParentEnd="true"
-                android:elevation="-50dp"
-                android:src="@drawable/heart">
-            </ImageView>
-
-            <ImageView
-                android:id="@+id/like_booster"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
                 android:layout_centerInParent="true"
-                android:layout_toStartOf="@id/likeBtn"
-                android:layout_toEndOf="@id/superLike"
-                android:elevation="-50dp"
-                android:src="@drawable/booster">
-
+                android:layout_toEndOf="@id/like_booster"
+                android:src="@drawable/heart">
             </ImageView>
 
 

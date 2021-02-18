@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import java.util.HashMap;
 
-public class QueryPreferences {
+public class SettingPreference {
 
     SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
@@ -13,7 +13,6 @@ public class QueryPreferences {
     public Context context;
     int PRIVATE_MODE = 0;
 
-    private final String PREF_NAME = "LOGIN";
 
     public final String uid="uid";
     public final String phone = "phone";
@@ -49,7 +48,7 @@ public class QueryPreferences {
     public final String hasTag5="hasTag5";
 
 
-    public QueryPreferences(Context context) {
+    public SettingPreference(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences("LOGIN", PRIVATE_MODE);
         editor = sharedPreferences.edit();

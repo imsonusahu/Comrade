@@ -98,18 +98,17 @@
         </RelativeLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:id="@+id/chat_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/btmHeader"
             android:layout_below="@id/chatHeader"
             android:padding="5dp"
-            tools:listitem="@layout/msg_sent"
 
             >
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </ListView>
 
 
         <RelativeLayout
@@ -123,12 +122,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/sendBtn"
                 android:background="@drawable/btn_strock_gray">
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editMsg"
+                    android:id="@+id/textField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -146,7 +144,7 @@
 
 
             <ImageView
-                android:id="@+id/sendBtn"
+                android:id="@+id/sendButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"

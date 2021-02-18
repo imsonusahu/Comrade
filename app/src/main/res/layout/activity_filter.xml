@@ -94,6 +94,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/selectGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -101,6 +102,7 @@
                 android:padding="10dp"
                 android:text="Male"
                 android:textSize="18sp">
+
             </TextView>
 
 
@@ -131,6 +133,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/ageLimit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -149,8 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="200"
-                android:soundEffectsEnabled="true"
                 android:progressBackgroundTint="@color/black"
+                android:soundEffectsEnabled="true"
 
                 android:thumb="@drawable/seek_bar_thumb"
                 app:range_progress_endValue="60"
@@ -247,12 +250,12 @@
                 style="@style/Base.Sephiroth.Widget.RangeSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:forceHasOverlappingRendering="true"
                 android:max="200"
+                android:progressBackgroundTint="@color/black"
                 android:soundEffectsEnabled="true"
                 android:thumb="@drawable/seek_bar_thumb"
                 app:range_progress_endValue="160"
-                android:progressBackgroundTint="@color/black"
-                android:forceHasOverlappingRendering="true"
                 app:range_progress_startEnd_minDiff="1"
                 app:range_progress_startValue="130" />
 
@@ -347,9 +350,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="200"
+                android:progressBackgroundTint="@color/black"
                 android:soundEffectsEnabled="true"
                 android:thumb="@drawable/seek_bar_thumb"
-                android:progressBackgroundTint="@color/black"
 
                 app:range_progress_endValue="50"
                 app:range_progress_startEnd_minDiff="1"
@@ -357,6 +360,36 @@
 
 
         </LinearLayout>
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            >
+
+
+            <com.royrodriguez.transitionbutton.TransitionButton
+                android:id="@+id/btnSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                app:defaultColor="@color/pink"
+                app:loaderColor="@color/pink" />
+
+
+        </RelativeLayout>
 
 
     </LinearLayout>

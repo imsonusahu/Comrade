@@ -1,5 +1,6 @@
 package com.comrade.comrade.activity;
 
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     QueryPreferences queryPreferences;
 
-    String phone;
-    private static final String home="HomeActivity";
+    private static final String home = "HomeActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +61,16 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-          //  new ProfileFragment().getUserData();
+            //  new ProfileFragment().getUserData();
             getUserData();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_LONG).show();
         }
 
 
-       // userLogs();
+        userLogs();
 
     }
 
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> user = queryPreferences.getUserDetail();
 
 
-        Log.e(home, "user id : " + user.get(queryPreferences.uid)  + "");
+        Log.e(home, "user id : " + user.get(queryPreferences.uid) + "");
         Log.e(home, "user Name : " + user.get(queryPreferences.name) + "");
         Log.e(home, "user gender : " + user.get(queryPreferences.gender) + "");
         Log.e(home, "user age : " + user.get(queryPreferences.age) + "");
@@ -130,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         profileFrag.setTabIconSize(24);
 
 
-
         binding.bottomNav.setCurrentTab(1);
 
         binding.bottomNav
@@ -173,17 +175,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private void loadFragment(Fragment fragment) {
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.mainContainer, fragment)
-                .commitAllowingStateLoss();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.mainContainer, fragment);
+        ft.commit();
 
     }
+
     public void getUserData() {
 
 

@@ -31,6 +31,10 @@ public class UsersModel {
         this.log = log;
     }
 
+    public UsersModel() {
+
+    }
+
     public String getDistance() {
         return distance;
     }

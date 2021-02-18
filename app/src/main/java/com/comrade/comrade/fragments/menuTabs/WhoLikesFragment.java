@@ -1,8 +1,6 @@
 package com.comrade.comrade.fragments.menuTabs;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
@@ -24,7 +21,6 @@ import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.adapters.menu.WhoLikedAdapter;
 import com.comrade.comrade.databinding.FragmentWhoLikesBinding;
-import com.comrade.comrade.models.WhoLikedModel;
 import com.comrade.comrade.models.WhoLikedModel;
 import com.comrade.comrade.volly.Variables;
 
@@ -43,40 +39,42 @@ public class WhoLikesFragment extends Fragment {
 
 
     private static final String TAG = "WhoLiked";
-    FragmentWhoLikesBinding binding;
+    private FragmentWhoLikesBinding binding;
     private ArrayList<WhoLikedModel> arrayList;
     private Map<String, String> users;
-
     private QueryPreferences queryPreferences;
-    private String matchUserId;
-    private String liked_to;
+    private String liked_by;
+
+
+    int havePosition;
+    private String matchId;
+    private String matchUserId, myId;
+
+    WhoLikedAdapter adapter;
+
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_who_likes, container, false);
         queryPreferences = new QueryPreferences(getActivity());
 
         users = queryPreferences.getUserDetail();
-        binding.pbWhoLike.setVisibility(View.VISIBLE);
+        binding.simmerViewWhoLike.startShimmerAnimation();
 
         initView();
-        binding.pbWhoLike.setVisibility(View.GONE);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                getUserList();
-            }
-        },300);
-
-
-
+        getUserList();
+        onClick();
 
 
         return binding.getRoot();
+    }
+
+    private void onClick() {
+
     }
 
     @Override
@@ -150,6 +148,7 @@ public class WhoLikesFragment extends Fragment {
     private void getUserList() {
 
         arrayList = new ArrayList<>();
+        arrayList.clear();
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -161,31 +160,35 @@ public class WhoLikesFragment extends Fragment {
 
         final String mRequestBody = jsonObject.toString();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.GET_MATCHES, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("LOG_VOLLEY", "Who like" + response);
-                try {
-                    JSONObject object = new JSONObject(response);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.GET_MATCHES, response -> {
+            Log.e("LOG_VOLLEY", "My match : " + response);
+            try {
+                JSONObject object = new JSONObject(response);
 
-                    String totalMatches = object.getJSONObject("Users").optString("totalmatches");
-                    Log.e("WhoLiked", "totalMatches  : " + totalMatches);
-                    JSONArray arr = object.getJSONObject("Users").getJSONArray("match");
-                    for (int i = 0; i < arr.length(); i++) {
+                String totalMatches = object.optString("totalmatch");
+                binding.totalMatchCount.setText(totalMatches);
 
-                        JSONObject data = arr.getJSONObject(i);
+                Log.e("WhoLiked", "totalMatches  : " + totalMatches);
 
-                        matchUserId = data.getString("_id");
-                        liked_to = data.getString("liked_to");
-                        Log.e("WhoLiked", "liked_to  : " + liked_to);
-                        binding.totalMatchCount.setText(totalMatches);
-                        getMatchUserProfile(liked_to);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                JSONArray arr = object.getJSONArray("Array");
 
-                    Log.e("WhoLiked", "liked_to Error : " + e.getMessage());
+                for (int i = 0; i < arr.length(); i++) {
+
+                    JSONObject data = arr.getJSONObject(i);
+                    matchId = data.optString("_id");
+                    liked_by = data.optString("liked_by");
+
+
+                    Log.e("WhoLiked", "  : " + matchId);
+                    Log.e("WhoLiked", "liked_by  : " + liked_by);
+
+                    getMatchUserProfile(liked_by, matchId);
+
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
+
+                Log.e("WhoLiked", "liked_by Error : " + e.getMessage());
             }
         }, error -> Log.e("LOG_VOLLEY", error.toString())) {
             @Override
@@ -214,19 +217,17 @@ public class WhoLikesFragment extends Fragment {
             public void retry(VolleyError error) {
 
                 Log.e(TAG, "Time error volly : " + error.getMessage());
-
             }
         });
         stringRequest.setShouldCache(false);
         Volley.newRequestQueue(getActivity()).add(stringRequest);
     }
 
-    private void getMatchUserProfile(String liked_to) {
+    private void getMatchUserProfile(String liked_by, String matchId) {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("_id", liked_to);
-
+            jsonObject.put("_id", liked_by);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -236,7 +237,7 @@ public class WhoLikesFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Variables.FIND_USER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Volly", "Matched user profile response :  " + response);
+                Log.e("Volly", "Matched user profile response : " + response);
 
                 try {
                     JSONObject data = new JSONObject(response);
@@ -249,10 +250,13 @@ public class WhoLikesFragment extends Fragment {
                             data.optString("interest_gender"),
                             data.optString("interest_in"),
                             data.optString("job"), data.optString("interest_gender"),
-                            data.optString("relationship_status"), data.optString("smoking"),
-                            data.optString("username"), data.optString("moods"),
+                            data.optString("relationship_status"),
+                            data.optString("smoking"),
+                            data.optString("username"),
+                            data.optString("moods"),
                             "https://www.imagediamond.com/blog/wp-content/uploads/2019/07/girls-dpz6.jpg",
-                            data.optString("distance"), data.optString("lat"), data.optString("long")));
+                            data.optString("distance"), data.optString("lat"),
+                            data.optString("long"), matchId));
 
                     recyclerView();
 
@@ -267,8 +271,8 @@ public class WhoLikesFragment extends Fragment {
         }, error -> Log.e("Volly", "Error Response" + error.toString())) {
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
@@ -285,15 +289,17 @@ public class WhoLikesFragment extends Fragment {
 
         };
         Volley.newRequestQueue(getActivity()).add(stringRequest);
-
-
     }
 
     private void recyclerView() {
 
-        WhoLikedAdapter adapter = new WhoLikedAdapter(getActivity(), arrayList);
+        adapter = new WhoLikedAdapter(getActivity(), arrayList);
         binding.matchRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        binding.simmerViewWhoLike.stopShimmerAnimation();
+        binding.simmerViewWhoLike.setVisibility(View.GONE);
+        binding.matchRv.setVisibility(View.VISIBLE);
     }
 
 

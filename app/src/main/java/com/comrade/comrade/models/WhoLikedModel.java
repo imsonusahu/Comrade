@@ -6,7 +6,7 @@ public class WhoLikedModel {
     private String gender,height,interest_gender,interest_in,job,relationship_status;
     private String sexuality,smoking,username,moods,profilePic,distance,lat,log;
 
-    public WhoLikedModel(String _id, String phone, String about, String company, String dob, String drinking, String education, String email, String gender, String height, String interest_gender, String interest_in, String job, String relationship_status, String sexuality, String smoking, String username, String moods, String profilePic, String distance, String lat, String log) {
+    public WhoLikedModel(String _id, String phone, String about, String company, String dob, String drinking, String education, String email, String gender, String height, String interest_gender, String interest_in, String job, String relationship_status, String sexuality, String smoking, String username, String moods, String profilePic, String distance, String lat, String log,String matchId) {
         this._id = _id;
         this.phone = phone;
         this.about = about;
@@ -29,6 +29,7 @@ public class WhoLikedModel {
         this.distance = distance;
         this.lat = lat;
         this.log = log;
+        this.matchId = matchId;
     }
 
     public String getDistance() {
@@ -208,4 +209,33 @@ public class WhoLikedModel {
     }
 
 
+
+
+
+
+    String matchId,matchUserId,liked_by;
+
+    public String getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(String matchId) {
+        this.matchId = matchId;
+    }
+
+    public String getMatchUserId() {
+        return matchUserId;
+    }
+
+    public void setMatchUserId(String matchUserId) {
+        this.matchUserId = matchUserId;
+    }
+
+    public String getLiked_by() {
+        return liked_by;
+    }
+
+    public void setLiked_by(String liked_by) {
+        this.liked_by = liked_by;
+    }
 }

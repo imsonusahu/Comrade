@@ -14,7 +14,7 @@ public interface Variables {
 
     String UPLOAD_USER_IMG = "http://comrade.live/api/uploadimage";
 
-    String FILTER_VIEW = "http://comrade.live/api/filterview";
+    String FILTER_VIEW = "https://comrade.live/api/filterview";
 
     String SEND_LIKE = "https://comrade.live/api/matchs";
 
@@ -25,7 +25,10 @@ public interface Variables {
     String GET_ALL_PROFILES = "http://comrade.live/api/view";
 
     String GET_VISITORS = "http://comrade.live/api/visteronids";
-    String GET_MATCHES="https://comrade.live/api/mymatch";
+
+    String GET_MATCHES="https://comrade.live/api/mymatches";
+
+    String CREATE_CHAT="https://comrade.live/api/chat";
 
 
 }
