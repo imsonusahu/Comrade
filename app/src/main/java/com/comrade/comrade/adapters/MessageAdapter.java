@@ -37,8 +37,8 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
             String userConnected = message.getUsername();
             messageText.setText(userConnected);
 
-        }else if(message.getUniqueId().equals(ChatActivity.uniqueId)){
-            Log.i(ChatActivity.TAG, "getView: " + message.getUniqueId() + " " + ChatActivity.uniqueId);
+        }else if(message.getUniqueId().equals(ChatActivity.myId)){
+            Log.i(ChatActivity.TAG, "getView: " + message.getUniqueId() + " " + ChatActivity.myId);
 
 
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.my_message, parent, false);

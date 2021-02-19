@@ -82,7 +82,7 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
 
         try {
             Glide.with(context)
-                    .load(matchModel.getUsername())
+                    .load(matchModel.getProfilePic())
                     .centerCrop()
                     .thumbnail(0.5f)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -93,20 +93,19 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .skipMemoryCache(true)
-
                     .into(holder.userMatchBg);
 
 
             Glide.with(context)
-                    .load("https://s.itl.cat/pngfile/s/107-1070540_stylish-boys-dp-handsome-boys-dp-dp-for.jpg")
+                    .load("https://i.pinimg.com/originals/c5/59/77/c559778bc16bff7d7d459c65154b0d9e.jpg")
                     .centerCrop()
                     .skipMemoryCache(true)
                     .into(holder.currentUserPic);
 
 
         } catch (Exception e) {
-
             e.printStackTrace();
+            Log.e("WhoLikeAdapter",e.getMessage());
         }
 
         holder.letsChatBtn.setOnClickListener(v -> {
@@ -129,8 +128,15 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
             bundle.putString("roomId", roomId);
             bundle.putString("myId", myId);
             bundle.putString("matchUserId", matchUserId);
+            bundle.putString("name", arrayList.get(position).getUsername());
+
+            bundle.putString("pic", arrayList.get(position).getProfilePic());
+
+
 
             intent.putExtras(bundle);
+
+            context.startActivity(intent);
 
 
         });

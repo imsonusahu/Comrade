@@ -104,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/btmHeader"
             android:layout_below="@id/chatHeader"
+            android:divider="@color/transparent"
             android:padding="5dp"
 
             >

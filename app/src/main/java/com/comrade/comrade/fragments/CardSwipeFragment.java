@@ -193,9 +193,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             jsonObject.put("genderpref", "Male");
 
 
-            Log.e("jsonx", "Female");
-            Log.e("jsonx", user.get(queryPreferences.uid));
-
         } catch (JSONException e) {
             e.printStackTrace();
 
@@ -259,7 +256,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
         stringRequest.setShouldCache(false);
 
         Volley.newRequestQueue(getActivity()).add(stringRequest);
-
 
     }
 
@@ -329,9 +325,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
     }
 
     private void onClick() {
-
-
-
 
         binding.filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -426,12 +419,9 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
         //   Log.d("onCardSwiped", "onCardRewound: " + direction);
 
         //     Toast.makeText(getActivity(), direction.toString(), Toast.LENGTH_SHORT).show();
-
-
         if (direction == Direction.Right) {
 
             Log.d("onCardSwiped", " Direction :" + direction);
-
 
             sendMatch();
             sendVisitors();

@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.adapters.MessageAdapter;
@@ -32,7 +34,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding binding;
 
     public static final String TAG = "ChatActivity";
-    public static String uniqueId;
+    public static String myId;
 
     private String Username;
     private Boolean hasConnection = false;
@@ -53,8 +54,7 @@ public class ChatActivity extends AppCompatActivity {
     private int time = 2;
 
     private Socket mSocket;
-    private HashMap<String, String> user;
-    private String roomId,userMatchId,myId;
+    private String roomId, userMatchId,name,pic;
 
 
     {
@@ -88,51 +88,61 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat);
 
-        queryPreferences=new QueryPreferences(this);
-        user=queryPreferences.getUserDetail();
+        queryPreferences = new QueryPreferences(this);
+        HashMap<String, String> user = queryPreferences.getUserDetail();
         Username = user.get(queryPreferences.name);
-        myId = user.get(queryPreferences.uid);
+
 
         Bundle bundle = getIntent().getExtras();
 
         roomId = bundle.getString("roomId");
         userMatchId = bundle.getString("userMatchId");
+        myId = bundle.getString("myId");
+        name = bundle.getString("name");
+        pic = bundle.getString("pic");
 
 
-        uniqueId = UUID.randomUUID().toString();
-        Log.i(TAG, "onCreate: " + uniqueId);
+        binding.userNameChat.setText(name);
+        Glide.with(this)
+                .load(pic)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .skipMemoryCache(true)
+                .into(binding.userProfileChat);
+
+        Log.i(TAG, "onCreate: " + myId);
 
         if (savedInstanceState != null) {
             hasConnection = savedInstanceState.getBoolean("hasConnection");
         }
 
-
         if (!hasConnection) {
 
 
-                mSocket.connect();
-                mSocket.on("connect user", onNewUser);
-                mSocket.on("chat message", onNewMessage);
-                mSocket.on("on typing", onTyping);
+            mSocket.connect();
+            mSocket.on("connect user", onNewUser);
+            mSocket.on("chat message", onNewMessage);
+            mSocket.on("on typing", onTyping);
 
-                JSONObject userId = new JSONObject();
-                try {
-                    userId.put("name", Username);
-                    userId.put("room_id", userMatchId);
-                    userId.put("sender_user", myId);
+            JSONObject userId = new JSONObject();
+            try {
+                userId.put("name", Username);
+                userId.put("room_id", userMatchId);
+                userId.put("sender_user", myId);
 
-                    mSocket.emit("connect user", userId);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            } else {
-
-                Toast.makeText(getApplicationContext(), "Room id doesn't match", Toast.LENGTH_SHORT).show();
-
-                onBackPressed();
+                mSocket.emit("connect user", userId);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+
+
+        } else {
+
+            Toast.makeText(getApplicationContext(), "Room id doesn't match", Toast.LENGTH_SHORT).show();
+
+            onBackPressed();
+        }
 
 
 
@@ -150,7 +160,21 @@ public class ChatActivity extends AppCompatActivity {
         messageListView.setAdapter(messageAdapter);
 
         onTypeButtonEnable();
+
+
+        binding.sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sendMessage(myId, userMatchId, roomId,name);
+
+
+            }
+        });
+
+
     }
+
 
     @Override
     protected void onSaveInstanceState(@NotNull Bundle outState) {
@@ -171,7 +195,7 @@ public class ChatActivity extends AppCompatActivity {
                 try {
                     onTyping.put("typing", true);
                     onTyping.put("username", Username);
-                    onTyping.put("uniqueId", uniqueId);
+                    onTyping.put("myId", myId);
                     mSocket.emit("on typing", onTyping);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -205,7 +229,7 @@ public class ChatActivity extends AppCompatActivity {
                     try {
                         username = data.getString("username");
                         message = data.getString("message");
-                        id = data.getString("uniqueId");
+                        id = data.getString("myId");
 
                         Log.i(TAG, "run: " + username + message + id);
 
@@ -253,7 +277,6 @@ public class ChatActivity extends AppCompatActivity {
         }
     };
 
-
     Emitter.Listener onTyping = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
@@ -265,9 +288,9 @@ public class ChatActivity extends AppCompatActivity {
                     try {
                         Boolean typingOrNot = data.getBoolean("typing");
                         String userName = data.getString("username") + " is Typing......";
-                        String id = data.getString("uniqueId");
+                        String id = data.getString("myId");
 
-                        if (id.equals(uniqueId)) {
+                        if (id.equals(myId)) {
                             typingOrNot = false;
                         } else {
                             setTitle(userName);
@@ -311,11 +334,7 @@ public class ChatActivity extends AppCompatActivity {
         }
     };
 
-    private void addMessage(String username, String message) {
-
-    }
-
-    public void sendMessage(View view) {
+    public void sendMessage(String myId, String userMatchId, String roomId,String name) {
         Log.i(TAG, "sendMessage: ");
         String message = binding.textField.getText().toString().trim();
         if (TextUtils.isEmpty(message)) {
@@ -326,15 +345,26 @@ public class ChatActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("message", message);
-            jsonObject.put("username", Username);
-            jsonObject.put("uniqueId", uniqueId);
+            jsonObject.put("username", name);
+            jsonObject.put("myId", myId);
+            jsonObject.put("userMatchId", userMatchId);
+            jsonObject.put("roomId", roomId);
+
+
+
+            mSocket.emit("chat message" + jsonObject);
+
         } catch (JSONException e) {
             e.printStackTrace();
+
+            Log.e("ChatActivity","Chat ");
         }
-        Log.i(TAG, "sendMessage: 1" + mSocket.emit("chat message", jsonObject));
+
+
+        Log.e(TAG, "Sent message " + " send items   " + jsonObject);
     }
 
-    @Override
+   /* @Override
     public void onDestroy() {
         super.onDestroy();
 
@@ -343,9 +373,8 @@ public class ChatActivity extends AppCompatActivity {
 
             JSONObject userId = new JSONObject();
             try {
-                userId.put("name", Username + "sonu");
-                userId.put("room_id", Username + " 123");
-
+                userId.put("name", Username);
+                userId.put("room_id", roomId);
 
                 mSocket.emit("connect user", userId);
 
@@ -362,8 +391,5 @@ public class ChatActivity extends AppCompatActivity {
         } else {
             Log.i(TAG, "onDestroy: is rotating.....");
         }
-
-    }
-
-
+    }*/
 }
