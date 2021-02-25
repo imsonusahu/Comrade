@@ -6,6 +6,7 @@ public class MediaModel {
 
     Uri imageUri;
 
+
     public MediaModel(Uri imageUri) {
         this.imageUri = imageUri;
     }

@@ -212,11 +212,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 
-
                     queryPreferences.setName(jsonObject.getString("username"),
                             jsonObject.getString("dob"));
                     queryPreferences.setGender(jsonObject.getString("gender"));
-
                     queryPreferences.setAbout(jsonObject.getString("about"));
                     queryPreferences.setPhone(jsonObject.getString("phone"));
                     queryPreferences.setHeight(jsonObject.getString("height"));
@@ -229,12 +227,14 @@ public class MainActivity extends AppCompatActivity {
                     queryPreferences.setShareMood(jsonObject.getString("moods"));
                     queryPreferences.doYouWork(jsonObject.getString("job"),
                             jsonObject.getString("company"));
-
                     queryPreferences.setWhatMakeHappy(jsonObject.getString("interest_in"),
                             jsonObject.getString("interest_in"),
                             jsonObject.getString("interest_in"),
                             jsonObject.getString("interest_in"),
                             jsonObject.getString("interest_in"));
+
+
+
 
 
                 } catch (JSONException e) {

@@ -107,32 +107,19 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
             e.printStackTrace();
             Log.e("WhoLikeAdapter",e.getMessage());
         }
-
         holder.letsChatBtn.setOnClickListener(v -> {
-            myId = users.get(queryPreferences.uid);
-            matchUserId = matchModel.get_id();
-            String matchId = matchModel.get_id();
-
-
-            Log.e("CreateChat", " Room id : " + matchId);
-            Log.e("CreateChat", " myId  : " + myId);
-            Log.e("CreateChat", " currentUid : " + matchUserId);
-
-         //   createChat(roomId, myId, msg, matchUserId);
-
 
 
             Bundle bundle = new Bundle();
 
             Intent intent = new Intent(context, ChatActivity.class);
-            bundle.putString("roomId", roomId);
-            bundle.putString("myId", myId);
-            bundle.putString("matchUserId", matchUserId);
+            bundle.putString("roomId", arrayList.get(position).getMatchId());
+            bundle.putString("myId", users.get(queryPreferences.uid));
+            bundle.putString("matchUserId", arrayList.get(position).get_id());
             bundle.putString("name", arrayList.get(position).getUsername());
-
             bundle.putString("pic", arrayList.get(position).getProfilePic());
 
-
+            queryPreferences.setIsChat("isChat");
 
             intent.putExtras(bundle);
 

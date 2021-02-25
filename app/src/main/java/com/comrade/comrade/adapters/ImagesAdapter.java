@@ -40,6 +40,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.VH> {
         MediaModel mediaModel = arrayList.get(position);
         holder.imageView.setImageURI(mediaModel.getImageUri());
 
+
     }
 
     @Override

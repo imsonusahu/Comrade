@@ -2,12 +2,27 @@
 package com.comrade.comrade.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.comrade.comrade.R;
 import com.comrade.comrade.databinding.ActivityProfileBinding;
+import com.comrade.comrade.volly.Variables;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -21,16 +36,15 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
 
+        uid = getIntent().getExtras().getString("uid");
+        Log.e("ProfileActivity", "User id : " + uid);
 
-        uid = getIntent().getStringExtra("uid");
 
-
-      //  getProfile(uid);
+        getProfile(uid);
 
     }
 
- /*   private void getProfile(String uid) {
-
+    private void getProfile(String uid) {
 
         JSONObject jsonObject = new JSONObject();
 
@@ -40,7 +54,6 @@ public class ProfileActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         final String mRequestBody = jsonObject.toString();
 
@@ -54,27 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
 
 
-                    binding.profileUserName.setText(jsonObject.getString("username")+" ,"
-                            +jsonObject.getString("dob")+"\n "+ jsonObject.getString("gender"));
-
-                    binding.aboutUser.setText(jsonObject.getString("about"));
-                    binding.profileUserName.setText(jsonObject.getString("height"));
-                    binding.profileUserName.setText(jsonObject.getString("relationship_status"));
-                    binding.profileUserName.setText(jsonObject.getString("sexuality"));
-                    binding.profileUserName.setText(jsonObject.getString("interest_gender"));
-                    binding.profileUserName.setText(jsonObject.getString("drinking"));
-                    binding.profileUserName.setText(jsonObject.getString("smoking"));
-                    binding.profileUserName.setText(jsonObject.getString("education"));
-                    binding.profileUserName.setText(jsonObject.getString("moods"));
-                    binding.profileUserName.setText(jsonObject.getString("job"));
-
-                    binding.profileUserName.setText(jsonObject.getString("company"));
-
-                    binding.profileUserName.setText(jsonObject.getString("interest_in") + " " +
-                            jsonObject.getString("interest_in") + " " +
-                            jsonObject.getString("interest_in") + " " +
-                            jsonObject.getString("interest_in") + " " +
-                            jsonObject.getString("interest_in"));
+                    Log.e("ProfileActivity", "User profile details " + jsonObject);
 
 
                 } catch (JSONException e) {
@@ -110,5 +103,5 @@ public class ProfileActivity extends AppCompatActivity {
 
         };
         Volley.newRequestQueue(this).add(stringRequest);
-    }*/
+    }
 }

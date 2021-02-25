@@ -151,6 +151,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:padding="5dp"
+                android:onClick="sendMessage"
+
                 android:src="@drawable/ic_baseline_send_24"
                 android:visibility="visible">
 

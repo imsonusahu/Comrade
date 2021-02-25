@@ -57,26 +57,26 @@ public class LookingForFragment extends Fragment {
                     Toast.makeText(getContext(), "lookingForMale", Toast.LENGTH_SHORT).show();
 
 
-                    lookingFor="Looking for Male";
+                    lookingFor="Male";
 
                     break;
                 case R.id.lookingForFemale:
                     // do operations specific to this selection
                     Toast.makeText(getContext(), "lookingForFemale", Toast.LENGTH_SHORT).show();
 
-                    lookingFor="Looking for Female";
+                    lookingFor="Female";
                     break;
                 case R.id.lookingForBisexualMale:
                     // do operations specific to this selection
                     Toast.makeText(getContext(), "lookingForBisexualMale", Toast.LENGTH_SHORT).show();
-                    lookingFor="Looking for Bisexual Male";
+                    lookingFor="Bisexual  Male";
 
                     break;
                 case R.id.lookingForBisexualFemale:
                     // do operations specific to this selection
                     Toast.makeText(getContext(), "lookingForBisexualFemale", Toast.LENGTH_SHORT).show();
 
-                    lookingFor="Looking for Bisexual female";
+                    lookingFor="Bisexual Female";
 
                     break;
             }
@@ -99,8 +99,6 @@ public class LookingForFragment extends Fragment {
                         R.anim.slide_out_left);
 
                 fragmentTransaction.replace(R.id.container, fragment).addToBackStack("").commit();
-
-
 
                 //startActivity(new Intent(getActivity(), ProfileActivity.class));
 

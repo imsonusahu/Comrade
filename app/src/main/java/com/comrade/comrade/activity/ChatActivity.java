@@ -27,6 +27,7 @@ import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,8 +43,9 @@ public class ChatActivity extends AppCompatActivity {
 
     public static final String TAG = "ChatActivity";
     public static String myId;
+    public static String userMatchId;
 
-    private String Username;
+    private String myName;
     private Boolean hasConnection = false;
 
     private ListView messageListView;
@@ -54,7 +56,11 @@ public class ChatActivity extends AppCompatActivity {
     private int time = 2;
 
     private Socket mSocket;
-    private String roomId, userMatchId,name,pic;
+    private String roomId, name, pic;
+
+    List< MessageFormat > messageList = new ArrayList<>();
+    private String message;
+    private String senderid;
 
 
     {
@@ -90,13 +96,13 @@ public class ChatActivity extends AppCompatActivity {
 
         queryPreferences = new QueryPreferences(this);
         HashMap<String, String> user = queryPreferences.getUserDetail();
-        Username = user.get(queryPreferences.name);
+        myName = user.get(queryPreferences.name);
 
 
         Bundle bundle = getIntent().getExtras();
 
         roomId = bundle.getString("roomId");
-        userMatchId = bundle.getString("userMatchId");
+        userMatchId = bundle.getString("matchUserId");
         myId = bundle.getString("myId");
         name = bundle.getString("name");
         pic = bundle.getString("pic");
@@ -114,27 +120,56 @@ public class ChatActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             hasConnection = savedInstanceState.getBoolean("hasConnection");
+
+
+
         }
 
         if (!hasConnection) {
 
-
             mSocket.connect();
-            mSocket.on("connect user", onNewUser);
-            mSocket.on("chat message", onNewMessage);
-            mSocket.on("on typing", onTyping);
 
-            JSONObject userId = new JSONObject();
-            try {
-                userId.put("name", Username);
-                userId.put("room_id", userMatchId);
-                userId.put("sender_user", myId);
 
-                mSocket.emit("connect user", userId);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (mSocket.io().reconnection()){
+
+
+
+
+
+                if (user.get(queryPreferences.isChat).equals("isChat")){
+
+
+                    mSocket.on("load all messages", getMessages);
+
+                }
+
+
+                mSocket.on("connect user", onNewUser);
+                mSocket.on("chat message", onNewMessage);
+                mSocket.on("on typing", onTyping);
+
+                JSONObject userId = new JSONObject();
+                try {
+                    userId.put("name", myName);
+                    userId.put("room_id", roomId);
+                    userId.put("sender_user", myId);
+
+                    mSocket.emit("connect user", userId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                if (messageList!=null){
+
+                    queryPreferences.setIsChat("hasChat");
+                }
+
+
+            }else {
+
+                Toast.makeText(getApplicationContext(),"Reconnection failed",Toast.LENGTH_LONG).show();
             }
-
 
 
         } else {
@@ -145,34 +180,35 @@ public class ChatActivity extends AppCompatActivity {
         }
 
 
-
         Log.i(TAG, "onCreate: " + hasConnection);
         hasConnection = true;
 
 
-        Log.i(TAG, "onCreate: " + Username + " " + "Connected");
+        Log.i(TAG, "onCreate: " + myName + " " + "Connected");
 
 
         messageListView = findViewById(R.id.chat_rv);
 
-        List<MessageFormat> messageFormatList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(this, R.layout.item_message, messageFormatList);
+
+        messageAdapter = new MessageAdapter(this, R.layout.item_message, messageList);
         messageListView.setAdapter(messageAdapter);
+
+        messageListView.smoothScrollToPosition(messageList.size() - 1);
 
         onTypeButtonEnable();
 
+        onClick();
 
-        binding.sendButton.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void onClick() {
+
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                sendMessage(myId, userMatchId, roomId,name);
-
-
+                onBackPressed();
             }
         });
-
-
     }
 
 
@@ -194,7 +230,7 @@ public class ChatActivity extends AppCompatActivity {
                 JSONObject onTyping = new JSONObject();
                 try {
                     onTyping.put("typing", true);
-                    onTyping.put("username", Username);
+                    onTyping.put("username", myName);
                     onTyping.put("myId", myId);
                     mSocket.emit("on typing", onTyping);
                 } catch (JSONException e) {
@@ -214,6 +250,48 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+
+    Emitter.Listener getMessages = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+
+            JSONArray jsonArray = (JSONArray) args[0];
+
+
+            // runOnUiThread is needed if you want to change something in the UI thread
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    // do something
+                    //mListData is the array adapter
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        try {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                            message = jsonObject.getString("msg");
+                            senderid = jsonObject.getString("sender_id");
+                            userMatchId = jsonObject.getString("reciever_id");
+                            messageList.add(new MessageFormat("", message, userMatchId, senderid));
+
+                            Log.e("ChatList", " Message List " + jsonArray);
+                            messageListView.setAdapter(messageAdapter);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    messageAdapter.notifyDataSetChanged();
+                    messageListView.setSelection(messageAdapter.getCount() - 1);
+                }
+            });
+
+        }
+    };
+
     Emitter.Listener onNewMessage = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
@@ -226,14 +304,17 @@ public class ChatActivity extends AppCompatActivity {
                     String username;
                     String message;
                     String id;
+
                     try {
+
                         username = data.getString("username");
                         message = data.getString("message");
                         id = data.getString("myId");
+                        userMatchId = data.getString("matchUserId");
 
-                        Log.i(TAG, "run: " + username + message + id);
+                        Log.i(TAG, "run: " + data);
 
-                        MessageFormat format = new MessageFormat(id, username, message);
+                        MessageFormat format = new MessageFormat(username, message, id, userMatchId);
                         Log.i(TAG, "run:4 ");
                         messageAdapter.add(format);
                         Log.i(TAG, "run:5 ");
@@ -245,6 +326,7 @@ public class ChatActivity extends AppCompatActivity {
             });
         }
     };
+
 
     Emitter.Listener onNewUser = new Emitter.Listener() {
         @Override
@@ -267,7 +349,7 @@ public class ChatActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    MessageFormat format = new MessageFormat(null, username, null);
+                    MessageFormat format = new MessageFormat(username, "", "", "");
                     messageAdapter.add(format);
                     messageListView.smoothScrollToPosition(0);
                     messageListView.scrollTo(0, messageAdapter.getCount() - 1);
@@ -334,8 +416,10 @@ public class ChatActivity extends AppCompatActivity {
         }
     };
 
-    public void sendMessage(String myId, String userMatchId, String roomId,String name) {
+
+    public void sendMessage(View view) {
         Log.i(TAG, "sendMessage: ");
+
         String message = binding.textField.getText().toString().trim();
         if (TextUtils.isEmpty(message)) {
             Log.i(TAG, "sendMessage:2 ");
@@ -344,49 +428,43 @@ public class ChatActivity extends AppCompatActivity {
         binding.textField.setText("");
         JSONObject jsonObject = new JSONObject();
         try {
+
+
             jsonObject.put("message", message);
-            jsonObject.put("username", name);
             jsonObject.put("myId", myId);
-            jsonObject.put("userMatchId", userMatchId);
-            jsonObject.put("roomId", roomId);
+            jsonObject.put("username", myName);
+            jsonObject.put("matchUserId", userMatchId);
+            jsonObject.put("room_id", roomId);
 
-
-
-            mSocket.emit("chat message" + jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
-
-            Log.e("ChatActivity","Chat ");
         }
+        Log.i(TAG, "sendMessage: 1" + mSocket.emit("chat message", jsonObject));
+        messageAdapter.notifyDataSetChanged();
 
-
-        Log.e(TAG, "Sent message " + " send items   " + jsonObject);
     }
 
-   /* @Override
+
+
+    /*@Override
     public void onDestroy() {
         super.onDestroy();
-
         if (isFinishing()) {
             Log.i(TAG, "onDestroy: ");
-
             JSONObject userId = new JSONObject();
             try {
-                userId.put("name", Username);
+                userId.put("name", myName);
                 userId.put("room_id", roomId);
-
                 mSocket.emit("connect user", userId);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             mSocket.disconnect();
-            mSocket.off("chat message", onNewMessage);
+            mSocket.off("chat message", getMessages);
             mSocket.off("connect user", onNewUser);
             mSocket.off("on typing", onTyping);
-            Username = "";
+            myName = "";
             messageAdapter.clear();
         } else {
             Log.i(TAG, "onDestroy: is rotating.....");

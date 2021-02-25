@@ -16,7 +16,7 @@
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:background="@drawable/btn_strock_gray"
-            android:visibility="gone"
+            android:visibility="visible"
             app:iconifiedByDefault="false"
             app:queryHint="Search visitors"
             app:searchIcon="@drawable/ic_baseline_search_24">

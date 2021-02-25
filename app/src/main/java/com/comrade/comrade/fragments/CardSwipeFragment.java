@@ -26,9 +26,11 @@ import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.activity.FilterActivity;
 import com.comrade.comrade.activity.MenuActivity;
+import com.comrade.comrade.activity.ProfileActivity;
 import com.comrade.comrade.adapters.CardStackAdapter;
 import com.comrade.comrade.databinding.FragmentCardSwipeBinding;
 import com.comrade.comrade.dto.UsersModel;
+import com.comrade.comrade.utils.RecyclerTouchListener;
 import com.comrade.comrade.volly.Variables;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
@@ -48,6 +50,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class CardSwipeFragment extends Fragment implements CardStackListener {
 
     FragmentCardSwipeBinding binding;
@@ -62,6 +66,7 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
     int position;
 
     String uid, likedTo_uid, userName;
+    private int havePosition;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -154,12 +159,7 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             public void onResponse(String response) {
                 Log.e("Volly", "Response Send super like  " + response);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volly", "Error Response" + error.toString());
-            }
-        }) {
+        }, error -> Log.e("Volly", "Error Response" + error.toString())) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -190,7 +190,7 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
         try {
 
             jsonObject.put("_id", user.get(queryPreferences.uid));
-            jsonObject.put("genderpref", "Male");
+            jsonObject.put("genderpref", user.get(queryPreferences.lookingFor));
 
 
         } catch (JSONException e) {
@@ -310,6 +310,7 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
 
     private void initView() {
+
         manager = new CardStackLayoutManager(getActivity(), this);
         manager.setStackFrom(StackFrom.None);
         manager.setVisibleCount(3);
@@ -330,7 +331,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
             @Override
             public void onClick(View v) {
 
-
                 Intent intent=new Intent(getActivity(), FilterActivity.class);
                 startActivity(intent);
             }
@@ -350,7 +350,6 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
                     .build();
             manager.setSwipeAnimationSetting(setting);
             binding.cardStackView.swipe();
-
 
             Toast.makeText(getActivity(), "Like" + setting.getDirection(), Toast.LENGTH_SHORT).show();
             Log.e(home, "Direction : " + setting.getDirection());
@@ -397,6 +396,38 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
                 Log.e(home, "Direction : " + setting.getDirection());
             }
         });
+
+
+
+
+
+        binding.cardStackView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),
+                binding.cardStackView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                havePosition = position;
+                Toast.makeText(getApplicationContext(), "Long clicked Position no is - " + havePosition, Toast.LENGTH_SHORT).show();
+
+                Bundle bundle=new Bundle();
+
+                bundle.putString("uid",arrayList.get(havePosition).get_id());
+
+                Intent intent=new Intent(getActivity(), ProfileActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+                Toast.makeText(getApplicationContext(), "Long clicked Position no is - " + position, Toast.LENGTH_SHORT).show();
+
+            }
+        }));
+
+
     }
 
 
@@ -470,4 +501,5 @@ public class CardSwipeFragment extends Fragment implements CardStackListener {
 
 
     }
+
 }

@@ -55,6 +55,7 @@
             android:layout_height="120dp"
             android:scrollbars="none"
             android:padding="10dp"
+            android:visibility="gone"
             android:layout_gravity="center">
 
 
@@ -129,6 +130,12 @@
                 android:layout_height="match_parent"
                 android:id="@+id/rv_nearby_profile"
                 android:layout_margin="8dp"
+                tools:listitem="@layout/nearby_profiles"
+                app:spanCount="4"
+                tools:itemCount="4"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+
+
                 >
             </androidx.recyclerview.widget.RecyclerView>
 

@@ -125,6 +125,7 @@ public class FinishActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(FinishActivity.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
 
                     } else {
 

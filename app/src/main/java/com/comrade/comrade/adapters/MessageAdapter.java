@@ -15,9 +15,10 @@ import com.comrade.comrade.chats.MessageFormat;
 
 import java.util.List;
 
-public class MessageAdapter extends ArrayAdapter<MessageFormat> {
+public class MessageAdapter extends ArrayAdapter< MessageFormat > {
     public MessageAdapter(Context context, int resource, List<MessageFormat> objects) {
         super(context, resource, objects);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -25,6 +26,9 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
         Log.i(ChatActivity.TAG, "getView:");
 
         MessageFormat message = getItem(position);
+
+
+        String senderId=message.getSenderId();
 
         if(TextUtils.isEmpty(message.getMessage())){
 
@@ -40,12 +44,12 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
         }else if(message.getUniqueId().equals(ChatActivity.myId)){
             Log.i(ChatActivity.TAG, "getView: " + message.getUniqueId() + " " + ChatActivity.myId);
 
-
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.my_message, parent, false);
             TextView messageText = convertView.findViewById(R.id.message_body);
             messageText.setText(message.getMessage());
+            notifyDataSetChanged();
 
-        }else {
+        }else{
             Log.i(ChatActivity.TAG, "getView: is not empty");
 
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.their_message, parent, false);
@@ -58,6 +62,7 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
 
             messageText.setText(message.getMessage());
             usernameText.setText(message.getUsername());
+            notifyDataSetChanged();
         }
 
         return convertView;

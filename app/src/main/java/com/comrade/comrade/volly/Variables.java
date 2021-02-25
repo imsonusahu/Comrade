@@ -30,5 +30,4 @@ public interface Variables {
 
     String CREATE_CHAT="https://comrade.live/api/chat";
 
-
 }

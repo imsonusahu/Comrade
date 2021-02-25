@@ -46,7 +46,6 @@ public class LocationActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     ActivityLocationBinding binding;
     public static Location loc;
-
     SharedPreferences mPref;
     SharedPreferences.Editor medit;
     Double latitude, longitude;

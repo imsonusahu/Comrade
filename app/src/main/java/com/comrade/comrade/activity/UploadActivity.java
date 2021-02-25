@@ -31,7 +31,6 @@ import com.android.volley.toolbox.Volley;
 import com.comrade.comrade.R;
 import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.adapters.ImagesAdapter;
-
 import com.comrade.comrade.databinding.ActivityUploadBinding;
 import com.comrade.comrade.models.MediaModel;
 import com.comrade.comrade.utils.RecyclerTouchListener;
@@ -257,19 +256,14 @@ public class UploadActivity extends AppCompatActivity {
             }
         }
     }
-
-
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
-
     }
-
     private void uploadBitmap(Bitmap bitmap) {
 
         //getting the tag from the edittex
-
         Log.e("uid", "User Id = " + queryPreferences.uid);
 
         //our custom volley request
@@ -302,12 +296,6 @@ public class UploadActivity extends AppCompatActivity {
                     }
                 }) {
 
-            /*
-             * If you want to add more parameters with the image
-             * you can do it here
-             * here we have only one parameter with the image
-             * which is tags
-             * */
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -327,9 +315,7 @@ public class UploadActivity extends AppCompatActivity {
                 return params;
             }
 
-
         };
-
 
         //adding the request to volley
         Volley.newRequestQueue(UploadActivity.this).add(volleyMultipartRequest);

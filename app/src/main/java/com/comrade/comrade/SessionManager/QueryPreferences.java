@@ -48,6 +48,9 @@ public class QueryPreferences {
 
     public final String hasTag5="hasTag5";
 
+    public final String isChat="isChat";
+
+
 
     public QueryPreferences(Context context) {
         this.context = context;
@@ -62,6 +65,15 @@ public class QueryPreferences {
         editor.putString("email",email);
         editor.apply();
     }
+
+
+
+    public void setIsChat(String isChat){
+
+        editor.putString("isChat",isChat);
+        editor.apply();
+    }
+
 
 
     public void setUserType(String userType){
@@ -212,7 +224,7 @@ public class QueryPreferences {
         user.put(hasTag3, sharedPreferences.getString(hasTag3, null));
         user.put(hasTag4, sharedPreferences.getString(hasTag4, null));
         user.put(hasTag5, sharedPreferences.getString(hasTag5, null));
-
+        user.put(isChat, sharedPreferences.getString(isChat, null));
 
         String LOGIN = "IS_LOGIN";
         editor.putBoolean(LOGIN, true);

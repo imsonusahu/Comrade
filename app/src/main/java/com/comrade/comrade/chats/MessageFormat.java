@@ -5,11 +5,21 @@ public class MessageFormat {
     private String Username;
     private String Message;
     private String UniqueId;
+    private String senderId;
 
-    public MessageFormat(String uniqueId, String username, String message) {
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public MessageFormat(String username, String message, String uniqueId, String senderId) {
         Username = username;
         Message = message;
         UniqueId = uniqueId;
+        this.senderId = senderId;
     }
 
     public String getUsername() {

@@ -60,7 +60,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/heart"
-                android:visibility="visible">
+                android:visibility="visible"
+                tools:ignore="ContentDescription">
             </ImageView>
 
         </RelativeLayout>
@@ -124,7 +125,6 @@
 
             </ImageView>
 
-
             <ImageView
                 android:id="@+id/rewindBtn"
                 android:layout_width="65dp"
@@ -155,7 +155,6 @@
 
             </ImageView>
 
-
             <ImageView
                 android:id="@+id/likeBtn"
                 android:layout_width="85dp"
@@ -164,7 +163,6 @@
                 android:layout_toEndOf="@id/like_booster"
                 android:src="@drawable/heart">
             </ImageView>
-
 
         </RelativeLayout>
 
