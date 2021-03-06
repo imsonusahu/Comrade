@@ -25,7 +25,6 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/bottomNav"
             app:tabs_animation_enabled="false"
-
             app:tabs_arrange_way="horizontal"
 
             >

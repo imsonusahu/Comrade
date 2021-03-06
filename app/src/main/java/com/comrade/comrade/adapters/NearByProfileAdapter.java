@@ -1,5 +1,6 @@
 package com.comrade.comrade.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.comrade.comrade.R;
 import com.comrade.comrade.activity.UserProfileActivity;
 import com.comrade.comrade.models.NearByProfileModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class NearByProfileAdapter extends RecyclerView.Adapter<NearByProfileAdapter.VH> {
@@ -34,6 +37,7 @@ public class NearByProfileAdapter extends RecyclerView.Adapter<NearByProfileAdap
 
     }
 
+    @NotNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.nearby_profiles, parent, false);

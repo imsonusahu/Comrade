@@ -69,7 +69,6 @@ public class EditProfileFragment extends Fragment {
     int havePosition;
     private QueryPreferences queryPreferences;
 
-
     //Image request code
     private final int PICK_IMAGE_REQUEST = 1;
 
@@ -88,9 +87,7 @@ public class EditProfileFragment extends Fragment {
         onClick();
         initView();
 
-
         arrayList.clear();
-
 
         arrayList.add(new MediaModel());
         arrayList.add(new MediaModel());
@@ -101,7 +98,6 @@ public class EditProfileFragment extends Fragment {
         arrayList.add(new MediaModel());
 
         setUserProfile();
-
 
         return view;
 
@@ -120,7 +116,6 @@ public class EditProfileFragment extends Fragment {
         binding.honestlyWant.setText(user.get(queryPreferences.shareMood));
         binding.aboutMeId.setText(user.get(queryPreferences.aboutUs));
 
-
     }
 
     private void initView() {
@@ -130,7 +125,6 @@ public class EditProfileFragment extends Fragment {
         imagesAdapter = new ImagesAdapter(getActivity(), arrayList);
         binding.rvEditProfile.setAdapter(imagesAdapter);
         imagesAdapter.notifyDataSetChanged();
-
 
     }
 
@@ -221,10 +215,8 @@ public class EditProfileFragment extends Fragment {
 
                 fragmentTransaction.replace(R.id.mainContainer, fragment).addToBackStack("").commitAllowingStateLoss();
 
-
             }
         });
-
     }
 
 
@@ -233,7 +225,6 @@ public class EditProfileFragment extends Fragment {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, PICK_IMAGE_REQUEST);
     }
-
 
     //Requesting permission
     private void permission() {
@@ -250,7 +241,6 @@ public class EditProfileFragment extends Fragment {
 
         }
     }
-
 
     //This method will be called when the user will tap on allow or deny
     @Override
@@ -271,9 +261,7 @@ public class EditProfileFragment extends Fragment {
             }
         }
     }
-
     //handling the image chooser activity result
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

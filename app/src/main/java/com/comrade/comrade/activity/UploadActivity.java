@@ -3,6 +3,7 @@ package com.comrade.comrade.activity;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -43,6 +44,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,9 +58,7 @@ public class UploadActivity extends AppCompatActivity {
     ImagesAdapter imagesAdapter;
     private int havePosition;
 
-
-    private static final int MY_PERMISSION_STORAGE = 1;
-
+    ProgressDialog progressDialog;
 
     ArrayList<MediaModel> arrayList = new ArrayList<>();
 
@@ -80,6 +80,8 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_upload);
 
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Uploading image please wait..");
         queryPreferences = new QueryPreferences(this);
         user = new HashMap<>();
         user = queryPreferences.getUserDetail();
@@ -165,6 +167,17 @@ public class UploadActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        binding.btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(UploadActivity.this,FinishActivity.class);
+
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void viewInit() {
@@ -246,7 +259,10 @@ public class UploadActivity extends AppCompatActivity {
                 Log.e("img path", "image path here = " + imageUri.getPath());
 
                 arrayList.add(new MediaModel(imageUri));
+
                 imagesAdapter.notifyDataSetChanged();
+
+                progressDialog.show();
 
                 //calling the method uploadBitmap to upload image
                 uploadBitmap(bitmap);
@@ -262,15 +278,16 @@ public class UploadActivity extends AppCompatActivity {
         return byteArrayOutputStream.toByteArray();
     }
     private void uploadBitmap(Bitmap bitmap) {
-
         //getting the tag from the edittex
-        Log.e("uid", "User Id = " + queryPreferences.uid);
+        Log.e("uid", "User Id = " + user.get(queryPreferences.uid));
 
         //our custom volley request
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Variables.UPLOAD_USER_IMG,
                 new Response.Listener< NetworkResponse >() {
                     @Override
                     public void onResponse(NetworkResponse response) {
+                        Log.e("VOLLY", "Response" + response.data);
+
 
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
@@ -278,6 +295,10 @@ public class UploadActivity extends AppCompatActivity {
                             if (response.statusCode == 200) {
 
                                 Toast.makeText(getApplicationContext(),"Upload Successful",Toast.LENGTH_LONG).show();
+
+
+                                progressDialog.dismiss();
+
                             }
 
                             Log.e("VOLLY", "Response" + obj);
@@ -292,7 +313,9 @@ public class UploadActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("VOLLY", "Error response : " + error.getMessage());
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+
+
                     }
                 }) {
 

@@ -26,22 +26,22 @@
         </TextView>
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/school"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:id="@+id/school"
-            android:hint="School or university"
-            android:fontFamily="@font/montserrat_medium"
-            android:textSize="16sp"
             android:background="@color/transparent"
+            android:fontFamily="@font/open_sans_light"
+            android:hint="School or university"
+            android:padding="20dp"
             android:textColor="@color/black"
+            android:textSize="16sp"
 
             ></com.google.android.material.textfield.TextInputEditText>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
-            android:background="@color/purple_700"
+            android:background="@color/pink_700"
             android:layout_marginHorizontal="20dp">
 
         </View>

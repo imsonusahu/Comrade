@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -18,11 +17,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.preference.PreferenceManager;
 
@@ -31,8 +27,12 @@ import com.comrade.comrade.SessionManager.QueryPreferences;
 import com.comrade.comrade.SessionManager.SessionManager;
 import com.comrade.comrade.databinding.ActivityLocationBinding;
 import com.comrade.comrade.utils.LocationService;
-
-import org.jetbrains.annotations.NotNull;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,8 +42,7 @@ import java.util.Locale;
 public class LocationActivity extends AppCompatActivity {
 
 
-    private static final int REQUEST_PERMISSIONS = 100;
-    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
     ActivityLocationBinding binding;
     public static Location loc;
     SharedPreferences mPref;
@@ -60,8 +59,13 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_location);
         queryPreferences = new QueryPreferences(this);
+        sessionManager = new SessionManager(this);
 
-        sessionManager=new SessionManager(this);
+
+       /* Intent intentService = new Intent(getApplicationContext(), LocationService.class);
+        startService(intentService);
+        registerReceiver(broadcastReceiver, new IntentFilter(LocationService.str_receiver));
+*/
 
 
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -74,55 +78,69 @@ public class LocationActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (canGetLocation()) {
-                    //DO SOMETHING USEFUL HERE. ALL GPS PROVIDERS ARE CURRENTLY ENABLED
+                checkPermission();
 
-                    if (sessionManager.isLogin()){
-
-                        startService();
-                    }else {
-
-                        Intent intent=new Intent(LocationActivity.this,SignUpChooserActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
-
-                } else {
-                    //SHOW OUR SETTINGS ALERT, AND LET THE USE TURN ON ALL THE GPS PROVIDERS
-                    showSettingsAlert();
-                }
             }
         });
 
-        checkLocationPermission();
+
     }
 
+    private void checkPermission() {
 
-    private void checkLocationPermission() {
-        if ((ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+        Dexter.withActivity(LocationActivity.this)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 
-            if ((!ActivityCompat.shouldShowRequestPermissionRationale(LocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION))) {
-                ActivityCompat.requestPermissions(LocationActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION
-                        },
-                        REQUEST_PERMISSIONS);
-            }
-        }
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        Intent intentService = new Intent(getApplicationContext(), LocationService.class);
+                        startService(intentService);
+                        registerReceiver(broadcastReceiver, new IntentFilter(LocationService.str_receiver));
+
+
+
+
+                        if (canGetLocation()){
+
+
+                            if (sessionManager.isLogin()) {
+
+                                startIntent();
+                            } else {
+
+                                Intent intent = new Intent(LocationActivity.this, SignUpChooserActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+                        }
+
+
+
+                    }
+                    // permission is granted, open the camera
+
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        // check for permanent denial of permission
+                        if (response.isPermanentlyDenied()) {
+                            // navigate user to app settings
+
+                            showSettingsAlert();
+
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest
+                                                                           permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
     }
 
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NotNull String permissions[], @NotNull int[] grantResults) {
-        if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {// If request is cancelled, the result arrays are empty.
-            if (requestCode == REQUEST_PERMISSIONS) {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Please allow the permission", Toast.LENGTH_LONG).show();
-                }
-            }
-        }
-    }
 
     public BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -149,17 +167,6 @@ public class LocationActivity extends AppCompatActivity {
                 Log.e("LoginActivity", "longitude" + longitude + "");
 
                 queryPreferences.setLatLong(latitude, latitude);
-                if (sessionManager.isLogin()){
-
-
-                    startService();
-                }else {
-
-                    Intent intentx=new Intent(LocationActivity.this,SignUpChooserActivity.class);
-                    startActivity(intentx);
-                    finish();
-
-                }
 
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -168,32 +175,14 @@ public class LocationActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            Intent intentService = new Intent(getApplicationContext(), LocationService.class);
-            startService(intentService);
-            registerReceiver(broadcastReceiver, new IntentFilter(LocationService.str_receiver));
-
-        }
-
+    protected void onStart() {
+        super.onStart();
+        checkPermission();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
 
-            unregisterReceiver(broadcastReceiver);
-        }
-    }
-
-    private void startService() {
+    private void startIntent() {
         Intent intent = new Intent(LocationActivity.this, MainActivity.class);
         startActivity(intent);
         finish();

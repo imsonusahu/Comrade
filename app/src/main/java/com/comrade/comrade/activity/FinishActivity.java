@@ -35,16 +35,51 @@ public class FinishActivity extends AppCompatActivity {
     private ActivityFinishBinding binding;
     private QueryPreferences queryPreferences;
 
+
+    HashMap<String,String> user=new HashMap<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_finish);
 
         queryPreferences = new QueryPreferences(this);
+        user=queryPreferences.getUserDetail();
+
 
         onClick();
 
+        LogPrint();
 
+
+    }
+
+    private void LogPrint() {
+
+        Log.e("_id", user.get(queryPreferences.uid));
+        Log.e("username", user.get(queryPreferences.name));
+        Log.e("dob", user.get(queryPreferences.age));
+        Log.e("gender", user.get(queryPreferences.gender));
+        Log.e("about", user.get(queryPreferences.aboutUs));
+        Log.e("phone", user.get(queryPreferences.phone));
+        Log.e("height", user.get(queryPreferences.height));
+        Log.e("relationship_status", user.get(queryPreferences.relStatus));
+        Log.e("sexuality", user.get(queryPreferences.sexuality));
+        Log.e("interest_gender", user.get(queryPreferences.lookingFor));
+        Log.e("drinking", user.get(queryPreferences.doYouDrink));
+        Log.e("smoking", user.get(queryPreferences.doYouSmoke));
+        Log.e("education", user.get(queryPreferences.goToSchool));
+        Log.e("moods", user.get(queryPreferences.shareMood));
+        Log.e("job", user.get(queryPreferences.jobTitle));
+        Log.e("company", user.get(queryPreferences.company));
+        Log.e("lat", user.get(queryPreferences.latitude));
+        Log.e("long", user.get(queryPreferences.longitude));
+        Log.e("user_type", "free");
+
+        Log.e("interest_in", user.get(queryPreferences.hasTag4));
+        Log.e("interest_in", user.get(queryPreferences.hasTag3));
+        Log.e("interest_in", user.get(queryPreferences.hasTag2));
+        Log.e("interest_in", user.get(queryPreferences.hasTag1));
     }
 
     private void onClick() {
@@ -68,15 +103,11 @@ public class FinishActivity extends AppCompatActivity {
 
     public void getUserData() {
 
-
-        HashMap<String, String> user;
-        user = queryPreferences.getUserDetail();
-
-
         JSONObject object = new JSONObject();
 
 
         try {
+
             object.put("_id", user.get(queryPreferences.uid));
             object.put("username", user.get(queryPreferences.name));
             object.put("dob", user.get(queryPreferences.age));

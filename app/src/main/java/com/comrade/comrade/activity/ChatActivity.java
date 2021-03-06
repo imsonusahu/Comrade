@@ -66,6 +66,7 @@ public class ChatActivity extends AppCompatActivity {
     {
         try {
             mSocket = IO.socket("http://comrade.live/");
+
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -93,6 +94,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat);
+
 
         queryPreferences = new QueryPreferences(this);
         HashMap<String, String> user = queryPreferences.getUserDetail();
@@ -123,53 +125,65 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-        }
-
-        if (!hasConnection) {
-
-            mSocket.connect();
+            if (hasConnection){
 
 
-            if (mSocket.io().reconnection()){
-
-
-
-
-
-                if (user.get(queryPreferences.isChat).equals("isChat")){
-
-
-                    mSocket.on("load all messages", getMessages);
-
-                }
-
+                mSocket.io().reconnection();
+                mSocket.connected();
+                mSocket.on("load all messages", getMessages);
 
                 mSocket.on("connect user", onNewUser);
                 mSocket.on("chat message", onNewMessage);
                 mSocket.on("on typing", onTyping);
+
 
                 JSONObject userId = new JSONObject();
                 try {
                     userId.put("name", myName);
                     userId.put("room_id", roomId);
                     userId.put("sender_user", myId);
+                    userId.put("match_uid", userMatchId);
 
                     mSocket.emit("connect user", userId);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-
-                if (messageList!=null){
-
-                    queryPreferences.setIsChat("hasChat");
-                }
-
-
-            }else {
-
-                Toast.makeText(getApplicationContext(),"Reconnection failed",Toast.LENGTH_LONG).show();
             }
+
+
+
+
+        }
+
+        if (!hasConnection) {
+
+
+            mSocket.connect();
+
+            mSocket.on("load all messages", getMessages);
+
+            mSocket.on("connect user", onNewUser);
+            mSocket.on("chat message", onNewMessage);
+            mSocket.on("on typing", onTyping);
+
+
+
+
+
+
+            JSONObject userId = new JSONObject();
+            try {
+                userId.put("name", myName);
+                userId.put("room_id", roomId);
+                userId.put("sender_user", myId);
+                userId.put("match_uid", userMatchId);
+
+                mSocket.emit("connect user", userId);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
 
         } else {
@@ -272,8 +286,9 @@ public class ChatActivity extends AppCompatActivity {
                             message = jsonObject.getString("msg");
                             senderid = jsonObject.getString("sender_id");
                             userMatchId = jsonObject.getString("reciever_id");
-                            messageList.add(new MessageFormat("", message, userMatchId, senderid));
+                            MessageFormat format = new MessageFormat("username", message, senderid, userMatchId);
 
+                            messageList.add(format);
                             Log.e("ChatList", " Message List " + jsonArray);
                             messageListView.setAdapter(messageAdapter);
 
@@ -320,7 +335,8 @@ public class ChatActivity extends AppCompatActivity {
                         Log.i(TAG, "run:5 ");
 
                     } catch (Exception e) {
-                        return;
+
+                        e.printStackTrace();
                     }
                 }
             });
@@ -442,12 +458,33 @@ public class ChatActivity extends AppCompatActivity {
         }
         Log.i(TAG, "sendMessage: 1" + mSocket.emit("chat message", jsonObject));
         messageAdapter.notifyDataSetChanged();
-
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+        if (isFinishing()) {
+            Log.i(TAG, "onDestroy: ");
+            JSONObject userId = new JSONObject();
+            try {
+                userId.put("name", myName);
+                userId.put("room_id", roomId);
+                mSocket.emit("connect user", userId);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mSocket.off();
+            mSocket.off("chat message", getMessages);
+            mSocket.off("connect user", onNewUser);
+            mSocket.off("on typing", onTyping);
+            myName = "";
+        } else {
+            Log.i(TAG, "onDestroy: is rotating.....");
+        }
+    }
 
-    /*@Override
+   /* @Override
     public void onDestroy() {
         super.onDestroy();
         if (isFinishing()) {
@@ -460,10 +497,10 @@ public class ChatActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mSocket.disconnect();
-            mSocket.off("chat message", getMessages);
-            mSocket.off("connect user", onNewUser);
-            mSocket.off("on typing", onTyping);
+            mSocket.io().reconnection(true);
+            mSocket.io().on("chat message", getMessages);
+            mSocket.io().on("connect user", onNewUser);
+            mSocket.io().on("on typing", onTyping);
             myName = "";
             messageAdapter.clear();
         } else {

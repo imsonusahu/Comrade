@@ -45,19 +45,15 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
     ArrayList<WhoLikedModel> arrayList;
     Context context;
     boolean isActive;
-
     private String matchUserId, roomId, myId;
-
     private String msg;
 
     WhoLikedModel matchModel;
     ArrayList<UsersListChatModel> userChatList;
-
     QueryPreferences queryPreferences;
     HashMap<String, String> users;
 
     public WhoLikedAdapter(FragmentActivity activity, ArrayList<WhoLikedModel> myArraylist) {
-
         context = activity;
         arrayList = myArraylist;
     }
@@ -108,7 +104,6 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
             Log.e("WhoLikeAdapter",e.getMessage());
         }
         holder.letsChatBtn.setOnClickListener(v -> {
-
 
             Bundle bundle = new Bundle();
 

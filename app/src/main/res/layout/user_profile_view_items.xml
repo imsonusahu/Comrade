@@ -319,7 +319,8 @@
                     android:fontFamily="@font/proxima_nova_regular"
                     android:text="My smile"
                     android:textColor="@color/black"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="20sp">
+                </TextView>
 
 
             </LinearLayout>
@@ -360,7 +361,8 @@
                     android:fontFamily="@font/proxima_nova_regular"
                     android:text="Vijay Nagar, Indore"
                     android:textColor="@color/black"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="20sp">
+                </TextView>
 
 
             </LinearLayout>

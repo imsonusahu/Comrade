@@ -49,7 +49,7 @@ public class MessageAdapter extends ArrayAdapter< MessageFormat > {
             messageText.setText(message.getMessage());
             notifyDataSetChanged();
 
-        }else{
+        }else {
             Log.i(ChatActivity.TAG, "getView: is not empty");
 
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.their_message, parent, false);

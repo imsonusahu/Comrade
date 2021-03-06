@@ -65,13 +65,10 @@ public class SignUpChooserActivity extends AppCompatActivity {
 
     private void onClick() {
 
-
         binding.fbBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 binding.myFbBtn.performClick();
-
             }
         });
 
@@ -83,6 +80,7 @@ public class SignUpChooserActivity extends AppCompatActivity {
 
             }
         });
+
         binding.loginWithNoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +88,6 @@ public class SignUpChooserActivity extends AppCompatActivity {
                 startActivity(new Intent(SignUpChooserActivity.this, LoginActivity.class));
             }
         });
-
 
     }
 
@@ -103,7 +100,6 @@ public class SignUpChooserActivity extends AppCompatActivity {
     }
 
     private void dialogBox() {
-
 
     }
 
@@ -123,7 +119,7 @@ public class SignUpChooserActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancel() {
-                        Log.e(TAG, "onSuccess" + "onCancel");
+                        Log.e(TAG, "onCancel");
 
                     }
 
@@ -206,8 +202,6 @@ public class SignUpChooserActivity extends AppCompatActivity {
         }
 
         callbackManager.onActivityResult(requestCode, resultCode, data);
-
-
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {

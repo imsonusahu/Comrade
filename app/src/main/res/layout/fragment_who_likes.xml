@@ -112,7 +112,7 @@
             android:layout_below="@+id/matchCountLayout"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             tools:itemCount="10"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:listitem="@layout/who_liked_ui">
 
         </androidx.recyclerview.widget.RecyclerView>

@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/sample1" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/overlay_black">
 
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="bottom"
+            android:gravity="center">
+
+
+            <TextView
+                android:id="@+id/nameAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/bold"
+
+                android:text="Shweta Sharma"
+                android:textAlignment="center"
+
+                android:textColor="@color/white"
+
+                android:textSize="24sp">
+
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/verifyIc"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:layout_marginHorizontal="5dp"
+                android:layout_toRightOf="@id/nameAge"
+                android:background="@drawable/verify_icon">
+
+            </ImageView>
+
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameAge"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/bold"
+                android:text="Address"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+
+</RelativeLayout>

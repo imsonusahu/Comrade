@@ -35,11 +35,11 @@ public class SplashActivity extends AppCompatActivity {
 
             if (sessionManager.isLogin()){
 
-                Intent intent=new Intent(SplashActivity.this,MainActivity.class);
+                Intent intent=new Intent(SplashActivity.this,LocationActivity.class);
                 startActivity(intent);
                 finish();
             }else {
-                Intent intent=new Intent(SplashActivity.this,SignUpChooserActivity.class);
+                Intent intent=new Intent(SplashActivity.this,LocationActivity.class);
                 startActivity(intent);
                 finish();
             }
