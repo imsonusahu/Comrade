@@ -33,16 +33,11 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
 
-            if (sessionManager.isLogin()){
 
                 Intent intent=new Intent(SplashActivity.this,LocationActivity.class);
                 startActivity(intent);
                 finish();
-            }else {
-                Intent intent=new Intent(SplashActivity.this,LocationActivity.class);
-                startActivity(intent);
-                finish();
-            }
+
 
         }, 500);
     }

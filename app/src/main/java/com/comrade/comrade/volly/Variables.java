@@ -30,4 +30,10 @@ public interface Variables {
 
     String CREATE_CHAT="https://comrade.live/api/chat";
 
+    String VIDEO_CALL_API="http://comrade.live/api/videocall_resp";
+
+
+
+
+
 }

@@ -158,13 +158,13 @@ public class LocationActivity extends AppCompatActivity {
                 String stateName = addresses.get(0).getAddressLine(1);
 
 
-                Log.e("LoginActivity", "Address" + addresses.get(0).getAdminArea());
-                Log.e("LoginActivity", "stateName" + stateName);
-                Log.e("LoginActivity", "cityName" + cityName);
+             //   Log.e("LoginActivity", "Address" + addresses.get(0).getAdminArea());
+              //  Log.e("LoginActivity", "stateName" + stateName);
+               // Log.e("LoginActivity", "cityName" + cityName);
 
 
-                Log.e("LoginActivity", "latitude" + latitude + "");
-                Log.e("LoginActivity", "longitude" + longitude + "");
+             //   Log.e("LoginActivity", "latitude" + latitude + "");
+              //  Log.e("LoginActivity", "longitude" + longitude + "");
 
                 queryPreferences.setLatLong(latitude, latitude);
 

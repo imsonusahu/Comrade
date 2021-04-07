@@ -108,18 +108,18 @@ public class WhoLikedAdapter extends RecyclerView.Adapter<WhoLikedAdapter.VH> {
             Bundle bundle = new Bundle();
 
             Intent intent = new Intent(context, ChatActivity.class);
-            bundle.putString("roomId", arrayList.get(position).getMatchId());
+            bundle.putString("matchId", arrayList.get(position).getMatchId());
             bundle.putString("myId", users.get(queryPreferences.uid));
             bundle.putString("matchUserId", arrayList.get(position).get_id());
             bundle.putString("name", arrayList.get(position).getUsername());
             bundle.putString("pic", arrayList.get(position).getProfilePic());
 
-            queryPreferences.setIsChat("isChat");
+
+            Log.e(TAG,"Match Id is : "+arrayList.get(position).getMatchId());
 
             intent.putExtras(bundle);
 
             context.startActivity(intent);
-
 
         });
 

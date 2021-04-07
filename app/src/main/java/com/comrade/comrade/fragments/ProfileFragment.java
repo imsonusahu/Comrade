@@ -1,12 +1,15 @@
 package com.comrade.comrade.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -40,6 +43,8 @@ public class ProfileFragment extends Fragment {
     Fragment editProfileFragment = new EditProfileFragment();
 
     QueryPreferences queryPreferences;
+
+    Dialog dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -187,6 +192,17 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        binding.getMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                subscriptionDialog();
+
+
+            }
+        });
+
 
         binding.verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,6 +212,53 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    private void subscriptionDialog() {
+
+        dialog=new Dialog(getActivity());
+
+        dialog.setContentView(R.layout.subscription_dialog);
+
+
+        Button bronzeBtn=dialog.findViewById(R.id.bronzeBtn);
+        Button silverBtn=dialog.findViewById(R.id.silverBtn);
+        Button goldBtn=dialog.findViewById(R.id.buyGoldBtn);
+        Button dismissBtn=dialog.findViewById(R.id.dismissBtn);
+        dialog.show();
+
+        bronzeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),"Bronze",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        silverBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),"Bronze",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        goldBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),"Bronze",Toast.LENGTH_LONG).show();
+            }
+        });
+        dismissBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
     }
 
     @SuppressLint("SetTextI18n")

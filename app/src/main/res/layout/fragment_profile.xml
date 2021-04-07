@@ -371,6 +371,7 @@
                                         android:background="@drawable/btn_back"
                                         android:backgroundTint="@color/purple_500"
                                         android:elevation="0dp"
+                                        android:id="@+id/getMore"
                                         android:fontFamily="@font/montserrat_medium"
                                         android:gravity="center"
                                         android:text="Get credits"

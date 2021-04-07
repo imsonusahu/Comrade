@@ -40,12 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = "MainActivity";
-    ActivityMainBinding binding;
-
-    QueryPreferences queryPreferences;
-
     private static final String home = "HomeActivity";
-
+    ActivityMainBinding binding;
+    QueryPreferences queryPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private void userLogs() {
 
 
-        HashMap<String, String> user = queryPreferences.getUserDetail();
+     /*   HashMap<String, String> user = queryPreferences.getUserDetail();
 
 
         Log.e(home, "user id : " + user.get(queryPreferences.uid) + "");
@@ -104,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e(home, "user hasTag2 : " + user.get(queryPreferences.hasTag2) + "");
         Log.e(home, "user hasTag3 : " + user.get(queryPreferences.hasTag3) + "");
         Log.e(home, "user hasTag4 : " + user.get(queryPreferences.hasTag4) + "");
-        Log.e(home, "user hasTag5 : " + user.get(queryPreferences.hasTag5) + "");
+        Log.e(home, "user hasTag5 : " + user.get(queryPreferences.hasTag5) + "");*/
     }
 
     private void bottomTabs() {
@@ -232,9 +229,6 @@ public class MainActivity extends AppCompatActivity {
                             jsonObject.getString("interest_in"),
                             jsonObject.getString("interest_in"),
                             jsonObject.getString("interest_in"));
-
-
-
 
 
                 } catch (JSONException e) {
